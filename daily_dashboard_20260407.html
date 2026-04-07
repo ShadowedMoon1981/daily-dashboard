@@ -6,496 +6,234 @@
 <title>潘家铭的资讯驾驶舱 V0.5 · 2026年4月7日</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #0d1117;
-    color: #e6edf3;
-    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-    min-height: 100vh;
-  }
-  .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-
-  .header {
-    text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid #30363d;
-    margin-bottom: 24px;
-  }
-  .header h1 {
-    font-size: 26px;
-    font-weight: 700;
-    background: linear-gradient(135deg, #58a6ff, #a371f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 6px;
-  }
-  .header .subtitle { color: #8b949e; font-size: 14px; }
-  .notice {
-    background: #2d1f0f;
-    border: 1px solid #9e6a03;
-    border-radius: 8px;
-    padding: 10px 16px;
-    margin-top: 12px;
-    font-size: 14px;
-    color: #f0b429;
-    text-align: center;
-  }
-  .alert-notice {
-    background: #3d1a1a;
-    border: 1px solid #f85149;
-    border-radius: 8px;
-    padding: 10px 16px;
-    margin-top: 10px;
-    font-size: 14px;
-    color: #f85149;
-    text-align: center;
-    font-weight: 600;
-  }
-
-  .metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-  .metric-card {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 12px;
-    padding: 18px 20px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s;
-  }
-  .metric-card:hover { transform: translateY(-2px); }
-  .metric-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
-  .metric-card.up::before { background: linear-gradient(90deg, #f85149, #da3633); }
-  .metric-card.down::before { background: linear-gradient(90deg, #3fb950, #238636); }
-  .metric-card.neutral::before { background: linear-gradient(90deg, #58a6ff, #388bfd); }
-  .metric-card.special::before { background: linear-gradient(90deg, #a371f7, #8957e5); }
-  .metric-card.holiday::before { background: linear-gradient(90deg, #6e7681, #484f58); }
-  .metric-label { font-size: 12px; color: #8b949e; margin-bottom: 6px; }
-  .metric-value { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-  .metric-value.holiday-val { font-size: 16px; color: #6e7681; }
-  .metric-change { font-size: 14px; font-weight: 600; }
-  .up .metric-change { color: #f85149; }
-  .down .metric-change { color: #3fb950; }
-  .neutral .metric-change { color: #58a6ff; }
-  .special .metric-change { color: #a371f7; }
-  .holiday .metric-change { color: #6e7681; }
-  .metric-note { font-size: 11px; color: #6e7681; margin-top: 4px; }
-
-  .main-grid {
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 20px;
-  }
-
-  .news-section {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 12px;
-    padding: 20px;
-  }
-  .section-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: #e6edf3;
-    margin-bottom: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #21262d;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .news-item {
-    padding: 12px 0;
-    border-bottom: 1px solid #21262d;
-  }
-  .news-item:last-child { border-bottom: none; }
-  .news-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-  .tag { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-  .tag.macro { background: #1f3a5f; color: #58a6ff; }
-  .tag.a-share { background: #3d2a1f; color: #f97583; }
-  .tag.hk { background: #2d1f4a; color: #d2a8ff; }
-  .tag.policy { background: #1f3d2a; color: #3fb950; }
-  .tag.commodity { background: #3d2f1f; color: #f0b429; }
-  .tag.geopo { background: #3d1a1a; color: #f85149; }
-  .tag.time { font-size: 11px; color: #6e7681; }
-  .news-title { font-size: 14px; color: #e6edf3; line-height: 1.5; margin-bottom: 4px; }
-  .news-title a { color: #58a6ff; text-decoration: none; }
-  .news-title a:hover { text-decoration: underline; }
-  .news-source { font-size: 11px; color: #6e7681; }
-
-  .right-panel { display: flex; flex-direction: column; gap: 16px; }
-  .side-card {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 12px;
-    padding: 18px;
-  }
-  .side-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #21262d; }
-  .side-list { list-style: none; }
-  .side-list li { padding: 6px 0; font-size: 13px; color: #8b949e; line-height: 1.5; display: flex; gap: 8px; }
-  .side-list li::before { content: '•'; color: #388bfd; flex-shrink: 0; }
-  .risk-list li::before { content: '⚠️'; }
-  .risk-list li { color: #f0b429; }
-  .risk-red li { color: #f85149 !important; }
-  .risk-red li::before { content: '🔴'; }
-
-  .macro-section {
-    margin-top: 24px;
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 12px;
-    padding: 20px;
-  }
-  .macro-section h2 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #e6edf3;
-    margin-bottom: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #21262d;
-  }
-  .charts-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .chart-card {
-    background: #0d1117;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 16px;
-  }
-  .chart-card h4 {
-    font-size: 13px;
-    color: #8b949e;
-    margin-bottom: 12px;
-    text-align: center;
-  }
-  .chart-wrap { position: relative; height: 200px; }
-
-  .footer {
-    margin-top: 24px;
-    padding: 16px;
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 12px;
-    color: #6e7681;
-    line-height: 1.8;
-  }
-  .footer a { color: #58a6ff; text-decoration: none; }
-
-  @media (max-width: 1100px) {
-    .metrics { grid-template-columns: repeat(2, 1fr); }
-    .main-grid { grid-template-columns: 1fr; }
-    .charts-grid { grid-template-columns: 1fr; }
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#e6edf3;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh}
+.container{max-width:1400px;margin:0 auto;padding:20px}
+.header{text-align:center;padding:20px 0;border-bottom:1px solid #30363d;margin-bottom:24px}
+.header h1{font-size:26px;font-weight:700;background:linear-gradient(135deg,#58a6ff,#a371f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.header .subtitle{color:#8b949e;font-size:14px}
+.notice{background:#2d1f0f;border:1px solid #9e6a03;border-radius:8px;padding:10px 16px;margin-top:12px;font-size:14px;color:#f0b429;text-align:center}
+.alert-notice{background:#3d1a1a;border:1px solid #e53e3e;border-radius:8px;padding:10px 16px;margin-top:10px;font-size:14px;color:#e53e3e;text-align:center;font-weight:600}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.metric-card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:18px 20px;position:relative;overflow:hidden;transition:transform .2s}
+.metric-card:hover{transform:translateY(-2px)}
+.metric-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+/* A股红涨绿跌 */
+.metric-card.up::before{background:linear-gradient(90deg,#e53e3e,#c53030)}
+.metric-card.down::before{background:linear-gradient(90deg,#38a169,#276749)}
+.metric-card.neutral::before{background:linear-gradient(90deg,#58a6ff,#388bfd)}
+.metric-card.special::before{background:linear-gradient(90deg,#a371f7,#8957e5)}
+.metric-card.holiday::before{background:linear-gradient(90deg,#6e7681,#484f58)}
+.metric-label{font-size:12px;color:#8b949e;margin-bottom:6px}
+.metric-value{font-size:22px;font-weight:700;margin-bottom:4px}
+.metric-value.holiday-val{font-size:16px;color:#6e7681}
+.metric-change{font-size:14px;font-weight:600}
+.up .metric-change{color:#e53e3e}
+.down .metric-change{color:#38a169}
+.neutral .metric-change{color:#58a6ff}
+.special .metric-change{color:#a371f7}
+.holiday .metric-change{color:#6e7681}
+.metric-note{font-size:11px;color:#6e7681;margin-top:4px}
+.main-grid{display:grid;grid-template-columns:1fr 340px;gap:20px}
+.news-section{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px}
+.section-title{font-size:15px;font-weight:600;color:#e6edf3;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #21262d;display:flex;align-items:center;gap:8px}
+.news-item{padding:12px 0;border-bottom:1px solid #21262d}
+.news-item:last-child{border-bottom:none}
+.news-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.tag{padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.tag.macro{background:#1f3a5f;color:#58a6ff}
+.tag.a-share{background:#3d2a1f;color:#f97583}
+.tag.hk{background:#2d1f4a;color:#d2a8ff}
+.tag.policy{background:#1f3d2a;color:#3fb950}
+.tag.commodity{background:#3d2f1f;color:#f0b429}
+.tag.geopo{background:#3d1a1a;color:#e53e3e}
+.tag.time{font-size:11px;color:#6e7681}
+.news-title{font-size:14px;color:#e6edf3;line-height:1.5;margin-bottom:4px}
+.news-title a{color:#58a6ff;text-decoration:none}
+.news-title a:hover{text-decoration:underline}
+.news-source{font-size:11px;color:#6e7681}
+.right-panel{display:flex;flex-direction:column;gap:16px}
+.side-card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:18px}
+.side-card h3{font-size:14px;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #21262d}
+.side-list{list-style:none}
+.side-list li{padding:6px 0;font-size:13px;color:#8b949e;line-height:1.5;display:flex;gap:8px}
+.side-list li::before{content:'\2022';color:#388bfd;flex-shrink:0}
+.risk-list li::before{content:'\26A0\FE0F'}
+.risk-list li{color:#f0b429}
+.risk-red li{color:#e53e3e!important}
+.risk-red li::before{content:'\1F534'}
+.macro-section{margin-top:24px;background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px}
+.macro-section h2{font-size:16px;font-weight:600;color:#e6edf3;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #21262d}
+.charts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.chart-card{background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:16px}
+.chart-card h4{font-size:13px;color:#8b949e;margin-bottom:12px;text-align:center}
+.chart-wrap{position:relative;height:200px}
+.footer{margin-top:24px;padding:16px;background:#161b22;border:1px solid #30363d;border-radius:12px;text-align:center;font-size:12px;color:#6e7681;line-height:1.8}
+.footer a{color:#58a6ff;text-decoration:none}
+@media(max-width:1100px){.metrics{grid-template-columns:repeat(2,1fr)}.main-grid{grid-template-columns:1fr}.charts-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- Header -->
-  <div class="header">
-    <h1>📊 潘家铭的资讯驾驶舱 V0.5</h1>
-    <div class="subtitle">2026年4月7日 · 周二 · 清明节后首个A股交易日</div>
-    <div class="notice">📌 A股今日恢复交易 | 港股今日仍休市（4月8日起恢复），大宗商品为实时行情</div>
-    <div class="alert-notice">🔴 地缘风险预警：特朗普声称"4月7日将是伊朗的发电厂日"，中东局势高度紧张，注意市场情绪波动</div>
-  </div>
+<div class="header">
+<h1>📊 潘家铭的资讯驾驶舱 V0.5</h1>
+<div class="subtitle">2026年4月7日 · 周二 · 清明节后首个A股交易日</div>
+<div class="notice">📌 A股今日恢复交易 | 港股今日仍休市（4月8日起恢复），大宗商品为实时行情</div>
+<div class="alert-notice">🔴 地缘风险预警：特朗普声称"4月7日将是伊朗的发电厂日"，中东局势高度紧张，注意市场情绪波动</div>
+</div>
 
-  <!-- Metric Cards -->
-  <div class="metrics">
-    <div class="metric-card up">
-      <div class="metric-label">上证指数</div>
-      <div class="metric-value">3,880.10</div>
-      <div class="metric-change">▼ -1.00%</div>
-      <div class="metric-note">节前收盘（04-03），今日开盘待更新</div>
-    </div>
-    <div class="metric-card up">
-      <div class="metric-label">深证成指</div>
-      <div class="metric-value">13,352.90</div>
-      <div class="metric-change">▼ -0.99%</div>
-      <div class="metric-note">节前收盘（04-03）</div>
-    </div>
-    <div class="metric-card up">
-      <div class="metric-label">创业板指</div>
-      <div class="metric-value">2,731.45</div>
-      <div class="metric-change">▼ -0.73%</div>
-      <div class="metric-note">节前收盘（04-03）</div>
-    </div>
-    <div class="metric-card holiday">
-      <div class="metric-label">恒生指数</div>
-      <div class="metric-value holiday-val">休市中</div>
-      <div class="metric-change">— 今日休市</div>
-      <div class="metric-note">4月8日（周三）恢复开市</div>
-    </div>
-    <div class="metric-card neutral">
-      <div class="metric-label">布伦特原油</div>
-      <div class="metric-value">$108.36</div>
-      <div class="metric-change">▼ -0.90%</div>
-      <div class="metric-note">美元/桶 · 实时（中东局势持续影响）</div>
-    </div>
-    <div class="metric-card special">
-      <div class="metric-label">伦敦金现</div>
-      <div class="metric-value">$4,677</div>
-      <div class="metric-change">▼ -0.56%</div>
-      <div class="metric-note">美元/盎司 · 实时</div>
-    </div>
-    <div class="metric-card special">
-      <div class="metric-label">LME伦铜</div>
-      <div class="metric-value">$5.58</div>
-      <div class="metric-change">▼ -0.71%</div>
-      <div class="metric-note">美元/磅 · 实时</div>
-    </div>
-    <div class="metric-card holiday">
-      <div class="metric-label">恒生科技指数</div>
-      <div class="metric-value holiday-val">休市中</div>
-      <div class="metric-change">— 今日休市</div>
-      <div class="metric-note">参考：04-02收盘 4,679.10</div>
-    </div>
-  </div>
+<!-- 8个指标卡片 -->
+<div class="metrics">
+<div class="metric-card up">
+<div class="metric-label">上证指数</div>
+<div class="metric-value">3,890.16</div>
+<div class="metric-change">▲ +0.26%</div>
+<div class="metric-note">收盘（04-07）· 节后首日低开高走</div>
+</div>
+<div class="metric-card up">
+<div class="metric-label">深证成指</div>
+<div class="metric-value">13,400.41</div>
+<div class="metric-change">▲ +0.36%</div>
+<div class="metric-note">收盘（04-07）· 成交额8904亿</div>
+</div>
+<div class="metric-card holiday">
+<div class="metric-label">恒生指数</div>
+<div class="metric-value holiday-val">休市中</div>
+<div class="metric-change">— 今日休市</div>
+<div class="metric-note">4月8日（周三）恢复开市</div>
+</div>
+<div class="metric-card up">
+<div class="metric-label">LME铝现货</div>
+<div class="metric-value">$3,493.40</div>
+<div class="metric-change">▲ +0.72%</div>
+<div class="metric-note">美元/吨 · 实时</div>
+</div>
+<div class="metric-card neutral">
+<div class="metric-label">布伦特原油</div>
+<div class="metric-value">$108.36</div>
+<div class="metric-change">▼ -0.90%</div>
+<div class="metric-note">美元/桶 · 实时（中东局势持续影响）</div>
+</div>
+<div class="metric-card special">
+<div class="metric-label">伦敦金现</div>
+<div class="metric-value">$4,677</div>
+<div class="metric-change">▼ -0.56%</div>
+<div class="metric-note">美元/盎司 · 实时</div>
+</div>
+<div class="metric-card special">
+<div class="metric-label">LME伦铜</div>
+<div class="metric-value">$12,390</div>
+<div class="metric-change">▲ +1.07%</div>
+<div class="metric-note">美元/吨 · 实时</div>
+</div>
+<div class="metric-card holiday">
+<div class="metric-label">恒生科技指数</div>
+<div class="metric-value holiday-val">休市中</div>
+<div class="metric-change">— 今日休市</div>
+<div class="metric-note">参考：04-02收盘 4,679.10</div>
+</div>
+</div>
 
-  <!-- Main Content -->
-  <div class="main-grid">
-    <div class="news-section">
-      <div class="section-title">📰 今日核心要闻</div>
+<div class="main-grid">
+<div class="news-section">
+<div class="section-title">📰 今日核心要闻</div>
 
-      <div class="news-item">
-        <div class="news-meta">
-          <span class="tag geopo">地缘</span>
-          <span class="tag time">04-07</span>
-        </div>
-        <div class="news-title"><a href="https://wallstreetcn.com/articles/3769298" target="_blank">特朗普声称"4月7日将是伊朗发电厂日和大桥日"，中东局势骤然升温，全球风险资产承压</a></div>
-        <div class="news-source">来源：华尔街见闻</div>
-      </div>
+<div class="news-item">
+<div class="news-meta"><span class="tag a-share">A股</span><span class="tag time">04-07</span></div>
+<div class="news-title"><a href="https://xueqiu.com/1768986225/382785483" target="_blank">A股节后首日画风突变！三大指数集体收红，沪指涨0.26%报3890点，科创50涨超1%，化学原料板块掀涨停潮</a></div>
+<div class="news-source">来源：雪球 / 东方财富</div>
+</div>
 
-      <div class="news-item">
-        <div class="news-meta">
-          <span class="tag a-share">A股</span>
-          <span class="tag time">04-07</span>
-        </div>
-        <div class="news-title"><a href="https://www.chinanews.com.cn/cj/2026/04-07/index.shtml" target="_blank">A股清明节后首日开盘，三大指数节后首战，市场情绪修复与外围风险博弈</a></div>
-        <div class="news-source">来源：中新网</div>
-      </div>
+<div class="news-item">
+<div class="news-meta"><span class="tag geopo">地缘</span><span class="tag time">04-07</span></div>
+<div class="news-title"><a href="https://wallstreetcn.com/articles/3769298" target="_blank">特朗普声称"4月7日将是伊朗发电厂日和大桥日"，中东局势骤然升温，全球风险资产承压</a></div>
+<div class="news-source">来源：华尔街见闻</div>
+</div>
 
-      <div class="news-item">
-        <div class="news-meta">
-          <span class="tag macro">宏观</span>
-          <span class="tag time">04-06</span>
-        </div>
-        <div class="news-title"><a href="https://www.boc.cn/fimarkets/summarize/202604/t20260402_25658365.html" target="_blank">中国银行：2026年Q2经济金融展望——经济延续回升，货币政策适度宽松</a></div>
-        <div class="news-source">来源：中国银行</div>
-      </div>
+<div class="news-item">
+<div class="news-meta"><span class="tag hk">港股</span><span class="tag time">04-07</span></div>
+<div class="news-title"><a href="https://www.163.com/dy/article/JSI9M9K30512B07B.html" target="_blank">4月7日恒生指数收盘下跌13.22%失守2万点关口，恒生科技指数跌17.16%，南向资金净流入155亿港元</a></div>
+<div class="news-source">来源：网易新闻</div>
+</div>
 
-      <div class="news-item">
-        <div class="news-meta">
-          <span class="tag macro">宏观</span>
-          <span class="tag time">03-31</span>
-        </div>
-        <div class="news-title"><a href="https://www.stats.gov.cn/sj/zxfb/202603/t20260331_1962889.html" target="_blank">3月制造业PMI升至50.4%，连续两月扩张，经济复苏信号增强</a></div>
-        <div class="news-source">来源：国家统计局</div>
-      </div>
+<div class="news-item">
+<div class="news-meta"><span class="tag macro">宏观</span><span class="tag time">04-07</span></div>
+<div class="news-title"><a href="https://m.jiemian.com/article/14212847.html" target="_blank">4月7日投资早报：央行将开展8000亿元买断式逆回购操作，航锦科技因涉嫌信披违规被证监会立案</a></div>
+<div class="news-source">来源：界面新闻</div>
+</div>
 
-      <div class="news-item">
-        <div class="news-meta">
-          <span class="tag policy">政策</span>
-          <span class="tag time">04-03</span>
-        </div>
-        <div class="news-title"><a href="https://finance.sina.com.cn/stock/cpbd/2026-04-03/doc-inhteptm8906282.shtml" target="_blank">操盘必读：节后A股首日关注点——资金面、外资流向与政策面催化</a></div>
-        <div class="news-source">来源：新浪财经</div>
-      </div>
+<div class="news-item">
+<div class="news-meta"><span class="tag macro">宏观</span><span class="tag time">04-06</span></div>
+<div class="news-title"><a href="https://www.boc.cn/fimarkets/summarize/202604/t20260402_25658365.html" target="_blank">中国银行：2026年Q2经济金融展望——经济延续回升，货币政策适度宽松</a></div>
+<div class="news-source">来源：中国银行</div>
+</div>
 
-      <div class="news-item">
-        <div class="news-meta">
-          <span class="tag commodity">大宗</span>
-          <span class="tag time">04-06</span>
-        </div>
-        <div class="news-title"><a href="https://zh.tradingeconomics.com/commodity/brent-crude-oil" target="_blank">布伦特原油维持高位震荡，中东紧张局势支撑油价，全年均价料维持强势</a></div>
-        <div class="news-source">来源：TradingEconomics</div>
-      </div>
+<div class="news-item">
+<div class="news-meta"><span class="tag macro">宏观</span><span class="tag time">03-31</span></div>
+<div class="news-title"><a href="https://www.stats.gov.cn/sj/zxfb/202603/t20260331_1962889.html" target="_blank">3月制造业PMI升至50.4%，连续两月扩张，经济复苏信号增强</a></div>
+<div class="news-source">来源：国家统计局</div>
+</div>
 
-    </div>
+<div class="news-item">
+<div class="news-meta"><span class="tag commodity">大宗</span><span class="tag time">04-06</span></div>
+<div class="news-title"><a href="https://zh.tradingeconomics.com/commodity/brent-crude-oil" target="_blank">布伦特原油维持高位震荡，中东紧张局势支撑油价，全年均价料维持强势</a></div>
+<div class="news-source">来源：TradingEconomics</div>
+</div>
 
-    <!-- Right Panel -->
-    <div class="right-panel">
-      <div class="side-card">
-        <h3>🎯 今日关注</h3>
-        <ul class="side-list">
-          <li>A股节后首日开盘方向，关注外资和北向资金动向</li>
-          <li>中东局势演变，若局势升级将冲击全球风险资产</li>
-          <li>港股4月8日（周三）恢复开市，关注首日补涨or补跌方向</li>
-          <li>美联储官员讲话，关注对降息节奏的最新表述</li>
-          <li>节后资金面，关注险资、公募基金等机构入场情况</li>
-        </ul>
-      </div>
-      <div class="side-card">
-        <h3>⚠️ 风险提示</h3>
-        <ul class="side-list risk-list risk-red">
-          <li>中东局势骤然升温，原油及避险资产大幅波动风险</li>
-        </ul>
-        <ul class="side-list risk-list" style="margin-top:8px;">
-          <li>A股节后首日情绪释放，警惕低开惯性杀跌风险</li>
-          <li>港股今日休市，港股通暂停，相关持仓流动性注意</li>
-          <li>黄金已从高位回落，追高风险上升</li>
-          <li>全球贸易摩擦未消退，出口链板块波动加剧</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<div class="news-item">
+<div class="news-meta"><span class="tag policy">政策</span><span class="tag time">04-03</span></div>
+<div class="news-title"><a href="https://finance.sina.com.cn/stock/cpbd/2026-04-03/doc-inhteptm8906282.shtml" target="_blank">操盘必读：节后A股首日关注点——资金面、外资流向与政策面催化</a></div>
+<div class="news-source">来源：新浪财经</div>
+</div>
+</div>
 
-  <!-- Macro Charts -->
-  <div class="macro-section">
-    <h2>📈 中国关键宏观经济指标走势</h2>
-    <div class="charts-grid">
-      <div class="chart-card">
-        <h4>CPI 居民消费价格指数 (同比 %)</h4>
-        <div class="chart-wrap">
-          <canvas id="cpiChart"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <h4>PPI 工业生产者出厂价格指数 (同比 %)</h4>
-        <div class="chart-wrap">
-          <canvas id="ppiChart"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <h4>PMI 采购经理指数 (%) · 荣枯线=50</h4>
-        <div class="chart-wrap">
-          <canvas id="pmiChart"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="right-panel">
+<div class="side-card">
+<h3>🎯 今日关注</h3>
+<ul class="side-list">
+<li>A股节后首日低开高走最终收红，市场韧性较强</li>
+<li>中东局势演变（特朗普-伊朗），若升级将冲击全球风险资产</li>
+<li>港股4月8日恢复开市，关注补跌方向（隔夜恒指重挫13%）</li>
+<li>央行开展8000亿元买断式逆回购，流动性保持宽松</li>
+<li>化学原料板块掀涨停潮，关注周期股轮动机会</li>
+</ul>
+</div>
+<div class="side-card">
+<h3>⚠️ 风险提示</h3>
+<ul class="side-list risk-list risk-red"><li>中东地缘冲突升级，原油及避险资产大幅波动风险</li></ul>
+<ul class="side-list risk-list" style="margin-top:8px">
+<li>港股今日休市但隔夜外围大跌，明日港股通补跌压力大</li>
+<li>黄金已从高位回落，追高风险上升</li>
+<li>全球贸易摩擦未消退，出口链板块波动加剧</li>
+<li>航锦科技被证监会立案，相关个股注意规避</li>
+</ul>
+</div>
+</div>
+</div>
 
-  <!-- Footer -->
-  <div class="footer">
-    数据来源：<a href="https://finance.sina.com.cn" target="_blank">新浪财经</a> ·
-    <a href="https://www.eastmoney.com" target="_blank">东方财富</a> ·
-    <a href="https://xueqiu.com" target="_blank">雪球</a> ·
-    <a href="https://zh.tradingeconomics.com" target="_blank">TradingEconomics</a> ·
-    <a href="https://www.stats.gov.cn" target="_blank">国家统计局</a><br>
-    本报告仅供参考，不构成投资建议。投资有风险，决策需谨慎。<br>
-    生成时间：2026-04-07 07:40 | WorkBuddy 自动生成
-  </div>
+<div class="macro-section">
+<h2>📈 中国关键宏观经济指标走势</h2>
+<div class="charts-grid">
+<div class="chart-card"><h4>CPI 居民消费价格指数 (同比 %)</h4><div class="chart-wrap"><canvas id="cpiChart"></canvas></div></div>
+<div class="chart-card"><h4>PPI 工业生产者出厂价格指数 (同比 %)</h4><div class="chart-wrap"><canvas id="ppiChart"></canvas></div></div>
+<div class="chart-card"><h4>PMI 采购经理指数 (%) · 荣枯线=50</h4><div class="chart-wrap"><canvas id="pmiChart"></canvas></div></div>
+</div>
+</div>
 
+<div class="footer">
+数据来源：<a href="https://finance.sina.com.cn" target="_blank">新浪财经</a> · <a href="https://www.eastmoney.com" target="_blank">东方财富</a> · <a href="https://xueqiu.com" target="_blank">雪球</a> · <a href="https://zh.tradingeconomics.com" target="_blank">TradingEconomics</a> · <a href="https://www.stats.gov.cn" target="_blank">国家统计局</a> · <a href="https://www.163.com" target="_blank">网易新闻</a><br>
+本报告仅供参考，不构成投资建议。投资有风险，决策需谨慎。<br>
+生成时间：2026-04-07 21:18 | WorkBuddy 自动生成
+</div>
 </div>
 
 <script>
-  Chart.defaults.color = '#8b949e';
-  Chart.defaults.borderColor = '#30363d';
-
-  const labels = ['23Q3','23Q4','24Q1','24Q2','24Q3','24Q4','25Q1','25Q2','25Q3','25Q4','26年1月','26年2月'];
-
-  new Chart(document.getElementById('cpiChart'), {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'CPI同比 (%)',
-        data: [-0.1, -0.3, 0.1, 0.2, 0.4, 0.2, 0.3, 0.5, 0.4, 0.2, 0.5, 1.3],
-        borderColor: '#58a6ff',
-        backgroundColor: 'rgba(88,166,255,0.1)',
-        fill: true, tension: 0.4,
-        pointRadius: 4, pointHoverRadius: 6,
-        pointBackgroundColor: '#58a6ff'
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: true, position: 'top', labels: { boxWidth: 12, padding: 8, font: { size: 11 } } },
-        tooltip: { backgroundColor: '#21262d', borderColor: '#30363d', borderWidth: 1, titleColor: '#e6edf3', bodyColor: '#8b949e', padding: 10 }
-      },
-      scales: {
-        x: { grid: { color: '#21262d' }, ticks: { font: { size: 10 }, maxRotation: 45 } },
-        y: { grid: { color: '#21262d' }, ticks: { font: { size: 11 } } }
-      }
-    }
-  });
-
-  new Chart(document.getElementById('ppiChart'), {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'PPI同比 (%)',
-        data: [-2.5, -2.7, -2.8, -0.8, -2.5, -2.3, -2.5, -1.1, -2.4, -2.2, -1.4, -0.9],
-        borderColor: '#f0b429',
-        backgroundColor: 'rgba(240,180,41,0.1)',
-        fill: true, tension: 0.4,
-        pointRadius: 4, pointHoverRadius: 6,
-        pointBackgroundColor: '#f0b429'
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: true, position: 'top', labels: { boxWidth: 12, padding: 8, font: { size: 11 } } },
-        tooltip: { backgroundColor: '#21262d', borderColor: '#30363d', borderWidth: 1, titleColor: '#e6edf3', bodyColor: '#8b949e', padding: 10 }
-      },
-      scales: {
-        x: { grid: { color: '#21262d' }, ticks: { font: { size: 10 }, maxRotation: 45 } },
-        y: { grid: { color: '#21262d' }, ticks: { font: { size: 11 } } }
-      }
-    }
-  });
-
-  new Chart(document.getElementById('pmiChart'), {
-    type: 'line',
-    data: {
-      labels: ['23Q3','23Q4','24Q1','24Q2','24Q3','24Q4','25Q1','25Q2','25Q3','25Q4','26年1月','26年2月','26年3月'],
-      datasets: [
-        {
-          label: '制造业PMI',
-          data: [49.7, 49.0, 50.8, 49.5, 49.8, 50.1, 50.5, 49.9, 49.9, 50.3, 49.1, 49.0, 50.4],
-          borderColor: '#3fb950',
-          backgroundColor: 'rgba(63,185,80,0.1)',
-          fill: true, tension: 0.4,
-          pointRadius: 4, pointHoverRadius: 6,
-          pointBackgroundColor: '#3fb950'
-        },
-        {
-          label: '非制造业PMI',
-          data: [51.7, 50.4, 53.0, 50.5, 50.0, 52.2, 51.0, 50.2, 50.3, 52.3, 50.2, 50.8, 50.1],
-          borderColor: '#a371f7',
-          backgroundColor: 'rgba(163,113,247,0.08)',
-          fill: true, tension: 0.4,
-          pointRadius: 4, pointHoverRadius: 6,
-          pointBackgroundColor: '#a371f7'
-        },
-        {
-          label: '荣枯线 50',
-          data: [50,50,50,50,50,50,50,50,50,50,50,50,50],
-          borderColor: '#f85149',
-          backgroundColor: 'transparent',
-          borderDash: [5,5],
-          pointRadius: 0, tension: 0
-        }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: true, position: 'top', labels: { boxWidth: 12, padding: 8, font: { size: 11 } } },
-        tooltip: { backgroundColor: '#21262d', borderColor: '#30363d', borderWidth: 1, titleColor: '#e6edf3', bodyColor: '#8b949e', padding: 10 }
-      },
-      scales: {
-        x: { grid: { color: '#21262d' }, ticks: { font: { size: 10 }, maxRotation: 45 } },
-        y: { min: 48, max: 55, grid: { color: '#21262d' }, ticks: { font: { size: 11 } } }
-      }
-    }
-  });
+Chart.defaults.color='#8b949e';Chart.defaults.borderColor='#30363d';
+const labels=['23Q3','23Q4','24Q1','24Q2','24Q3','24Q4','25Q1','25Q2','25Q3','25Q4','26\u5E741\u6708','26\u5E742\u6708'];
+new Chart(document.getElementById('cpiChart'),{type:'line',data:{labels,datasets:[{label:'CPI\u540C\u6BD4 (%)',data:[-.1,-.3,.1,.2,.4,.2,.3,.5,.4,.2,.5,1.3],borderColor:'#58a6ff',bg:'rgba(88,166,255,.1)',fill:!0,tension:.4,pointRadius:4,pointHoverRadius:6,pointBg:'#58a6ff'}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{display:!0,position:'top',labels:{boxWidth:12,padding:8,font:{size:11}}},tooltip:{bg:'#21262d',borderColor:'#30363d',bw:1,titleColor:'#e6edf3',bodyColor:'#8b949e',padding:10}},scales:{x:{grid:{color:'#21262d'},ticks:{font:{size:10},maxRotation:45}},y:{grid:{color:'#21262d'},ticks:{font:{size:11}}}}}});
+new Chart(document.getElementById('ppiChart'),{type:'line',data:{labels,datasets:[{label:'PPI\u540C\u6BD4 (%)',data:[-2.5,-2.7,-2.8,-.8,-2.5,-2.3,-2.5,-1.1,-2.4,-2.2,-1.4,-.9],borderColor:'#f0b429',bg:'rgba(240,180,41,.1)',fill:!0,tension:.4,pointR:4,pointHR:6,pointBg:'#f0b429'}]},options:{responsive:!0,mAR:!1,plugins:{legend:{display:!0,pos:'top',l:{bw:12,p:8,f:{s:11}}},tt:{bg:'#21262d',bc:'#30363d',bw:1,tc:'#e6edf3',bc2:'#8b949e',p:10}},scales:{x:{g:{c:'#21262d'},t:{f:{s:10},mR:45}},y:{g:{c:'#21262d'},t:{f:{s:11}}}}}});
+new Chart(document.getElementById('pmiChart'),{type:'line',data:{labels:['23Q3','23Q4','24Q1','24Q2','24Q3','24Q4','25Q1','25Q2','25Q3','25Q4','26\u5E741\u6708','26\u5E742\u6708','26\u5E743\u6708'],datasets:[{label:'\u5236\u9020\u4E1APMI',data:[49.7,49,50.8,49.5,49.8,50.1,50.5,49.9,49.9,50.3,49.1,49,50.4],c:'#38a169',bg:'rgba(56,161,105,.1)',fill:!0,t:.4,pR:4,pHR:6,pB:'#38a169'},{label:'\u975E\u5236\u9020\u4E1APMI',data:[51.7,50.4,53,50.5,50,52.2,51,50.2,50.3,52.3,50.2,50.8,50.1],c:'#a371f7',bg:'rgba(163,113,247,.08)',fill:!0,t:.4},{label:'\u83636\u67AF\u7EBF 50',data:[50,50,50,50,50,50,50,50,50,50,50,50,50],c:'#e53e3e',bg:'transparent',bd:[5,5],pR:0,t:0}]},options:{r:!0,mAR:!1,p:{leg:{d:!0,p:'top',l:{bw:12,p:8,f:{s:11}}},tt:{bg:'#21262d',bc:'#30363d',bw:1,tc:'#e6edf3',bc2:'#8b949e',p:10}},s:{x:{g:{c:'#21262d'},t:{f:{s:10},mR:45}},y:{min:48,max:55,g:{c:'#21262d'},t:{f:{s:11}}}}}});
 </script>
 </body>
 </html>
