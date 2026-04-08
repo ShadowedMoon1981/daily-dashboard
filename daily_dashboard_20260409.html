@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日投资资讯驾驶舱 - 2026年4月9日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .header .date {
+            font-size: 1.2rem;
+            color: #888;
+        }
+        
+        .last-update {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* Market Grid */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .market-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-title .icon {
+            font-size: 1.3rem;
+        }
+        
+        /* Stock Cards */
+        .stock-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.2s, background 0.2s;
+        }
+        
+        .stock-card:hover {
+            transform: translateX(5px);
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .stock-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .stock-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .stock-code {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 2px;
+        }
+        
+        .stock-price {
+            text-align: right;
+        }
+        
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .change {
+            font-size: 0.9rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+            display: inline-block;
+        }
+        
+        .up {
+            color: #ff4757;
+            background: rgba(255, 71, 87, 0.15);
+        }
+        
+        .down {
+            color: #2ed573;
+            background: rgba(46, 213, 115, 0.15);
+        }
+        
+        /* Commodity Grid */
+        .commodity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        
+        .commodity-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .commodity-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .commodity-name {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+        
+        .commodity-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .commodity-unit {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        /* News Section */
+        .news-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        
+        .news-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 3px solid #00d4ff;
+        }
+        
+        .news-category {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .news-title {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        
+        .news-content {
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.6;
+        }
+        
+        /* Market Highlights */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .highlight-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 136, 0.1));
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        .highlight-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .highlight-card ul {
+            list-style: none;
+        }
+        
+        .highlight-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: #ccc;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .highlight-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .highlight-card li::before {
+            content: "•";
+            color: #00d4ff;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .live-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stock-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .stock-price {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📊 每日投资资讯驾驶舱</h1>
+            <div class="date">2026年4月9日 · 星期四</div>
+            <div class="last-update"><span class="live-indicator"></span>实时数据 · 数据来源：东方财富、新浪财经</div>
+        </header>
+        
+        <!-- A股市场 -->
+        <div class="market-grid">
+            <div class="market-section">
+                <div class="section-title">
+                    <span class="icon">🇨🇳</span>
+                    A股市场
+                </div>
+                <div class="stock-card">
+                    <div>
+                        <div class="stock-name">上证指数</div>
+                        <div class="stock-code">SH: 000001</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">3,995.00</div>
+                        <div class="change up">+2.70%</div>
+                    </div>
+                </div>
+                <div class="stock-card">
+                    <div>
+                        <div class="stock-name">深证成指</div>
+                        <div class="stock-code">SZ: 399001</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">14,042.50</div>
+                        <div class="change up">+4.79%</div>
+                    </div>
+                </div>
+                <div class="stock-card">
+                    <div>
+                        <div class="stock-name">创业板指</div>
+                        <div class="stock-code">SZ: 399006</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">3,347.61</div>
+                        <div class="change up">+5.91%</div>
+                    </div>
+                </div>
+                <div class="stock-card">
+                    <div>
+                        <div class="stock-name">沪深300</div>
+                        <div class="stock-code">SH: 000300</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">4,595.56</div>
+                        <div class="change up">+3.49%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 港股市场 -->
+            <div class="market-section">
+                <div class="section-title">
+                    <span class="icon">🇭🇰</span>
+                    港股市场
+                </div>
+                <div class="stock-card">
+                    <div>
+                        <div class="stock-name">恒生指数</div>
+                        <div class="stock-code">HK: HSI</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">25,893.02</div>
+                        <div class="change up">+3.09%</div>
+                    </div>
+                </div>
+                <div class="stock-card">
+                    <div>
+                        <div class="stock-name">恒生科技指数</div>
+                        <div class="stock-code">HK: HSTECH</div>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price">4,923.25</div>
+                        <div class="change up">+5.03%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 大宗商品 -->
+            <div class="market-section">
+                <div class="section-title">
+                    <span class="icon">🛢️</span>
+                    大宗商品
+                </div>
+                <div class="commodity-grid">
+                    <div class="commodity-card">
+                        <div class="commodity-icon">🛢️</div>
+                        <div class="commodity-name">布伦特原油</div>
+                        <div class="commodity-price" style="color: #ff6b6b;">$91.72</div>
+                        <div class="commodity-unit">美元/桶</div>
+                        <div class="change down" style="margin-top: 10px;">-16.51%</div>
+                    </div>
+                    <div class="commodity-card">
+                        <div class="commodity-icon">🥇</div>
+                        <div class="commodity-name">伦敦金现</div>
+                        <div class="commodity-price" style="color: #ffd700;">$4,710</div>
+                        <div class="commodity-unit">美元/盎司</div>
+                        <div class="change down" style="margin-top: 10px;">-1.65%</div>
+                    </div>
+                    <div class="commodity-card">
+                        <div class="commodity-icon">🔶</div>
+                        <div class="commodity-name">LME铜</div>
+                        <div class="commodity-price" style="color: #f39c12;">$5.70</div>
+                        <div class="commodity-unit">美元/磅</div>
+                        <div class="change up" style="margin-top: 10px;">+2.03%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 市场亮点 -->
+        <div class="highlights">
+            <div class="highlight-card">
+                <h3>📈 市场表现亮点</h3>
+                <ul>
+                    <li>A股全线飘红，沪指创近18个月最大涨幅</li>
+                    <li>创业板指暴涨5.91%，超5100只个股上涨</li>
+                    <li>港股恒生科技指数涨5.03%，美团涨超11%</li>
+                    <li>CPO概念股、黄金股表现活跃</li>
+                    <li>AI主线基金近一年最高收益超200%</li>
+                </ul>
+            </div>
+            <div class="highlight-card">
+                <h3>🌍 全球市场动态</h3>
+                <ul>
+                    <li>美伊达成临时停火协议，国际油价暴跌16%</li>
+                    <li>美股大涨，道指涨超1300点，纳指重回25000点</li>
+                    <li>亚太股市受刺激大幅反弹，多国股市触发熔断</li>
+                    <li>黄金冲高至4800美元后回落至4710美元</li>
+                    <li>在岸人民币刷新逾3年高位</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 财经要闻 -->
+        <div class="news-section">
+            <div class="section-title">
+                <span class="icon">📰</span>
+                财经要闻
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-category">地缘政治</div>
+                    <div class="news-title">美伊停火协议落地，原油市场剧烈震荡</div>
+                    <div class="news-content">
+                        美国与伊朗达成临时停火协议并开启谈判，国际油价单日暴跌超16%。但停火首日以色列空袭黎巴嫩南郊，伊朗称其违反协议再度关闭霍尔木兹海峡，市场波动加剧。
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-category">宏观经济</div>
+                    <div class="news-title">3月CPI同比预计继续回升，PPI或由负转正</div>
+                    <div class="news-content">
+                        业内普遍预计3月份CPI同比将继续回升，国际油价上涨可能推动PPI同比由负转正。六大行个人住房贷款规模较上年末减少约7000亿元，但按揭贷款进件量已出现回暖迹象。
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-category">产业动态</div>
+                    <div class="news-title">锂电池行业满产满销，二线厂商迎窗口期</div>
+                    <div class="news-content">
+                        头部电池企业满产满销，订单开始向外溢出，二线及中小电池厂商迎来市场份额提升窗口期，行业梯队分化加速。宁德时代拟41亿元增资上市公司布局算电协同。
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-category">政策速递</div>
+                    <div class="news-title">数字人民币扩容，城商行首次入局</div>
+                    <div class="news-content">
+                        新增12家数字人民币运营机构，城商行首次入局。"国家队"持仓规模曝光约1.5万亿元，市场关注平准基金动态。
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-category">公司热点</div>
+                    <div class="news-title">海康威视辟谣"多人被调查"传闻</div>
+                    <div class="news-content">
+                        海康威视紧急辟谣"监控系统漏洞、300多人被带走"的市场传闻。西部黄金一季度净利预增超2200%，并启动赴港上市计划。
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-category">投资机会</div>
+                    <div class="news-title">机构：多路增量资金已在路上，AI主线持续</div>
+                    <div class="news-content">
+                        市场强力反弹后，机构认为多路增量资金将按先前看好方向渐次展开攻势。AI发展仍被看作重要投资主线，近50只聚焦AI的基金复权净值创历史新高。
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>数据来源：东方财富网、新浪财经、聚金数据 | 更新时间：2026年4月9日 07:00</p>
+            <p style="margin-top: 10px;">
+                <a href="https://shadowedmoon1981.github.io/daily-dashboard/" target="_blank">🌐 在线预览</a> · 
+                <a href="https://github.com/shadowedmoon1981/daily-dashboard" target="_blank">📂 GitHub仓库</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
