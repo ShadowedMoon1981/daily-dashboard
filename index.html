@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>每日A股港股投资资讯驾驶舱 - 2026-04-08</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --panel-soft: #11161d;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --red: #ff4d4f;
+      --green: #00c087;
+      --purple: #8b5cf6;
+      --gold: #d4a72c;
+      --blue: #58a6ff;
+      --cyan: #22d3ee;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at top right, rgba(88,166,255,0.08), transparent 25%), var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .timestamp {
+      text-align: right;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .alert {
+      background: linear-gradient(90deg, rgba(212,167,44,0.18), rgba(139,92,246,0.14));
+      border: 1px solid rgba(212,167,44,0.45);
+      border-left: 4px solid var(--gold);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .alert strong { color: #ffd666; }
+    .alert .small { color: #d0d7de; font-size: 13px; margin-top: 6px; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(22,27,34,0.96), rgba(13,17,23,0.96));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      min-height: 132px;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--blue);
+      opacity: 0.9;
+    }
+
+    .card.a-share::before { background: linear-gradient(90deg, #ff7b72, #ff4d4f); }
+    .card.hk::before { background: linear-gradient(90deg, #8b5cf6, #c084fc); }
+    .card.commodity::before { background: linear-gradient(90deg, #d4a72c, #f6c453); }
+
+    .label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: #c9d1d9;
+      font-size: 12px;
+    }
+
+    .price {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 8px;
+    }
+
+    .change {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .up { color: var(--red); }
+    .down { color: var(--green); }
+    .note {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(360px, 0.95fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(48,54,61,0.75);
+      background: linear-gradient(180deg, rgba(88,166,255,0.06), rgba(255,255,255,0));
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 0.3px;
+    }
+
+    .panel-subtitle {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .news-list {
+      padding: 10px 14px 16px;
+    }
+
+    .news-item {
+      display: block;
+      padding: 14px;
+      margin-top: 10px;
+      border: 1px solid rgba(48,54,61,0.75);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(17,22,29,0.95), rgba(13,17,23,0.85));
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .news-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(88,166,255,0.45);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .news-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .tag {
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid transparent;
+    }
+    .tag.macro { color: #7ee787; border-color: rgba(126,231,135,0.35); background: rgba(126,231,135,0.08); }
+    .tag.ashare { color: #ff7b72; border-color: rgba(255,123,114,0.35); background: rgba(255,123,114,0.08); }
+    .tag.hk { color: #c084fc; border-color: rgba(192,132,252,0.35); background: rgba(192,132,252,0.08); }
+    .tag.fund { color: #58a6ff; border-color: rgba(88,166,255,0.35); background: rgba(88,166,255,0.08); }
+    .tag.commodity { color: #f2cc60; border-color: rgba(242,204,96,0.35); background: rgba(242,204,96,0.08); }
+
+    .news-title {
+      margin: 0 0 6px;
+      font-size: 17px;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .news-desc {
+      margin: 0;
+      color: #b7c0c8;
+      font-size: 13px;
+    }
+
+    .side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .side-body {
+      padding: 14px 18px 18px;
+    }
+
+    .focus-list,
+    .risk-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .focus-list li,
+    .risk-list li {
+      margin: 10px 0;
+      color: #d0d7de;
+    }
+
+    .risk-list li::marker { color: #ff7b72; }
+    .focus-list li::marker { color: var(--blue); }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+
+    .mini-table th,
+    .mini-table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid rgba(48,54,61,0.75);
+      text-align: left;
+    }
+
+    .mini-table th { color: var(--muted); font-weight: 600; }
+
+    .footer {
+      margin-top: 20px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .source-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .source-list a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #c9d1d9;
+      background: var(--panel-soft);
+      border: 1px solid rgba(48,54,61,0.75);
+      font-size: 12px;
+    }
+
+    .disclaimer {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 1200px) {
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .main { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 16px; }
+      .header { flex-direction: column; }
+      .timestamp { text-align: left; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title-wrap">
+        <h1>每日A股港股投资资讯驾驶舱</h1>
+        <div class="subtitle">Bloomberg终端风格 · 深色专业主题 · 盘前快照（红涨绿跌 / 港股紫色 / 大宗金色）</div>
+      </div>
+      <div class="timestamp">
+        <div>观察日：2026-04-08（星期三）</div>
+        <div>生成时间：2026-04-08 07:30</div>
+      </div>
+    </div>
+
+    <div class="alert">
+      <strong>盘前说明：</strong> 截至 2026-04-08 07:30，A股尚未开盘，核心指数采用 4月7日 收盘数据；港股因 4月3日-4月7日 假期休市，今日（4月8日）恢复交易，指数采用最近交易日 4月2日 收盘数据；大宗商品采用 4月7日 最新可得公开报价。
+      <div class="small">港股近端数据存在假期断点，今日复市后价格与涨跌幅可能较前值快速偏离；本页适合作为晨会/盘前总览，而非盘中实时行情界面。</div>
+    </div>
+
+    <section class="cards">
+      <article class="card a-share">
+        <div class="label"><span>上证指数</span><span class="chip">A股</span></div>
+        <div class="price">3,890.16</div>
+        <div class="change up">+0.26%</div>
+        <div class="note">备注：4/7收盘，4/8开盘前快照</div>
+      </article>
+      <article class="card a-share">
+        <div class="label"><span>深证成指</span><span class="chip">A股</span></div>
+        <div class="price">13,400.41</div>
+        <div class="change up">+0.36%</div>
+        <div class="note">备注：4/7收盘，化工等板块领涨</div>
+      </article>
+      <article class="card a-share">
+        <div class="label"><span>创业板指</span><span class="chip">A股</span></div>
+        <div class="price">3,160.82</div>
+        <div class="change up">+0.36%</div>
+        <div class="note">备注：4/7收盘，成长风格企稳</div>
+      </article>
+      <article class="card hk">
+        <div class="label"><span>恒生指数</span><span class="chip">港股</span></div>
+        <div class="price">25,116.53</div>
+        <div class="change down">-0.70%</div>
+        <div class="note">备注：港股4/8复市前，最近交易日为4/2</div>
+      </article>
+      <article class="card hk">
+        <div class="label"><span>恒生科技指数</span><span class="chip">港股</span></div>
+        <div class="price">4,679.10</div>
+        <div class="change down">-1.63%</div>
+        <div class="note">备注：4/2最近交易日，科技板块承压</div>
+      </article>
+      <article class="card commodity">
+        <div class="label"><span>布伦特原油</span><span class="chip">大宗</span></div>
+        <div class="price">111.089</div>
+        <div class="change up">+2.52%</div>
+        <div class="note">备注：美元/桶，4/7最新可得报价</div>
+      </article>
+      <article class="card commodity">
+        <div class="label"><span>伦敦金现</span><span class="chip">贵金属</span></div>
+        <div class="price">4,659.15</div>
+        <div class="change down">-0.34%</div>
+        <div class="note">备注：美元/盎司，4/7最新可得报价</div>
+      </article>
+      <article class="card commodity">
+        <div class="label"><span>伦铜（LME）</span><span class="chip">工业金属</span></div>
+        <div class="price">12,433.50</div>
+        <div class="change up">+0.69%</div>
+        <div class="note">备注：美元/吨，4/7 10:02报价</div>
+      </article>
+    </section>
+
+    <section class="main">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">今日核心要闻</h2>
+            <div class="panel-subtitle">隔夜至今晨的可点击原文链接，便于快速复盘与延伸阅读</div>
+          </div>
+          <div class="chip">7 条</div>
+        </div>
+        <div class="news-list">
+          <a class="news-item" href="https://www.cs.com.cn/gppd/gsyj/2026/04/07/detail_2026040710001993.html" target="_blank" rel="noreferrer">
+            <div class="news-meta"><span class="tag ashare">A股</span><span>04-07 15:07</span><span>中证网</span></div>
+            <h3 class="news-title">收评：创业板指涨0.36%，化工板块大涨</h3>
+            <p class="news-desc">A股三大指数高开后维持震荡，化工、草甘膦、有机硅等方向走强，成长风格边际修复，盘前情绪参考偏积极。</p>
+          </a>
+
+          <a class="news-item" href="https://www.nbd.com.cn/articles/2026-04-03/4323849.html" target="_blank" rel="noreferrer">
+            <div class="news-meta"><span class="tag hk">港股</span><span>04-03 08:01</span><span>每经网</span></div>
+            <h3 class="news-title">港股4月3日起休市5天，4月8日恢复正常交易</h3>
+            <p class="news-desc">港股在耶稣受难节、清明节翌日与复活节假期期间连续休市，今日复市后需重点关注假期累积信息对开盘缺口与成交额的影响。</p>
+          </a>
+
+          <a class="news-item" href="https://www.21jingji.com/article/20260407/herald/0901ef3de767af764b055bd7d75c3cf8.html" target="_blank" rel="noreferrer">
+            <div class="news-meta"><span class="tag hk">港股</span><span>04-07 21:08</span><span>21世纪经济报道</span></div>
+            <h3 class="news-title">恒生科技3月下跌9.5%，机构展望4月投资机会</h3>
+            <p class="news-desc">机构认为港股4月进入财报密集披露期，能源、高股息、创新药、AI科技等方向仍有配置讨论度，科技板块波动率预计维持高位。</p>
+          </a>
+
+          <a class="news-item" href="https://www.stats.gov.cn/sj/zxfbhjd/202604/t20260403_1962983.html" target="_blank" rel="noreferrer">
+            <div class="news-meta"><span class="tag macro">宏观</span><span>04-04 09:30</span><span>国家统计局</span></div>
+            <h3 class="news-title">2026年3月下旬流通领域重要生产资料市场价格变动情况</h3>
+            <p class="news-desc">50种重要生产资料中，31种价格上涨、16种下降、3种持平；化工品涨势较强，而电解铜、铝锭等有色价格回落，为周期板块定价提供重要背景。</p>
+          </a>
+
+          <a class="news-item" href="https://paper.cnstock.com/html/2026-04/08/content_2197416.htm" target="_blank" rel="noreferrer">
+            <div class="news-meta"><span class="tag fund">基金</span><span>04-08</span><span>上海证券报</span></div>
+            <h3 class="news-title">一季度基金分红超500亿元，权益基金超过债券基金成主力</h3>
+            <p class="news-desc">截至3月31日，一季度1326只基金分红合计535.52亿元，被动指数型基金分红意愿突出，显示中长期资金偏好与产品格局继续演化。</p>
+          </a>
+
+          <a class="news-item" href="https://www.cls.cn/detail/2337093" target="_blank" rel="noreferrer">
+            <div class="news-meta"><span class="tag macro">宏观</span><span>04-08 07:08</span><span>财联社</span></div>
+            <h3 class="news-title">港股本周要闻前瞻：国内3月CPI数据出炉，美联储会议纪要即将公布</h3>
+            <p class="news-desc">今明两日宏观数据密集，CPI、PPI及金融数据预期将成为市场重新校准通胀与增长预期的重要抓手，港股复市情绪对数据敏感度较高。</p>
+          </a>
+
+          <a class="news-item" href="https://news.10jqka.com.cn/20260408/c675813563.shtml" target="_blank" rel="noreferrer">
+            <div class="news-meta"><span class="tag commodity">A股/大宗</span><span>04-08 07:24</span><span>同花顺</span></div>
+            <h3 class="news-title">猪肉股大涨，生猪价格却不断下跌，原因是？</h3>
+            <p class="news-desc">生猪期货与猪肉股出现“期股背离”，反映短期供需与中期周期拐点的定价差异，农业链与低估值修复主题有望继续活跃。</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="side">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">今日关注</h2>
+              <div class="panel-subtitle">晨会可优先追踪的五个观察点</div>
+            </div>
+          </div>
+          <div class="side-body">
+            <ol class="focus-list">
+              <li>港股今日复市后的开盘缺口与成交额变化，重点看科技权重与高股息板块的强弱分化。</li>
+              <li>A股前一交易日化工、农业、存储芯片等方向走强，观察是否具备向主线扩散的持续性。</li>
+              <li>3月CPI、PPI及金融数据发布窗口临近，宏观数据对权益与商品风险偏好的再定价值得重点跟踪。</li>
+              <li>原油、黄金、铜价波动仍高，关注资源链、航运链及有色产业链的情绪传导。</li>
+              <li>一季报披露期临近，低估值、高股息与现金流稳健资产的防御配置价值继续抬升。</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">风险提示</h2>
+              <div class="panel-subtitle">盘前快照并非实时交易信号</div>
+            </div>
+          </div>
+          <div class="side-body">
+            <ol class="risk-list">
+              <li>当前为 07:30 盘前时点，开盘后指数与商品价格可能快速偏离本页快照。</li>
+              <li>港股因长假后复市，跳空波动和流动性错配风险显著高于常规交易日。</li>
+              <li>商品价格高波动阶段，资源股与周期股估值弹性放大，单日回撤风险同步提升。</li>
+              <li>热点板块轮动较快，短线追高化工、农业、科技等活跃方向需警惕分时回落。</li>
+              <li>汇率与外盘波动会对早盘风险偏好产生扰动，尤其影响港股科技与大宗相关链条。</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">补充市场数据</h2>
+              <div class="panel-subtitle">用户指定补充指标：国企指数</div>
+            </div>
+          </div>
+          <div class="side-body">
+            <table class="mini-table">
+              <thead>
+                <tr>
+                  <th>指标</th>
+                  <th>最新价</th>
+                  <th>涨跌幅</th>
+                  <th>备注</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>恒生国企指数</td>
+                  <td>8,456.92</td>
+                  <td class="down">-0.56%</td>
+                  <td>最近交易日 4/2 收盘</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <footer class="footer">
+      <div><strong>数据来源</strong>：中证网、每经网、21世纪经济报道、国家统计局、上海证券报、财联社、同花顺、聚金数据、上海有色网（SMM）；并参考新浪财经、东方财富、雪球、TradingEconomics 等公开页面进行交叉校验。</div>
+      <div class="source-list">
+        <a href="https://www.cs.com.cn/gppd/gsyj/2026/04/07/detail_2026040710001993.html" target="_blank" rel="noreferrer">A股收评</a>
+        <a href="https://www.sohu.com/a/1006140553_313745" target="_blank" rel="noreferrer">港股最近交易日数据</a>
+        <a href="https://www.jujindata.com/commodity/detail/crude-oil-brent" target="_blank" rel="noreferrer">布伦特原油</a>
+        <a href="https://www.jujindata.com/commodity/detail/gold-gb" target="_blank" rel="noreferrer">伦敦金现</a>
+        <a href="https://hq.smm.cn/futures/103842608" target="_blank" rel="noreferrer">LME铜</a>
+        <a href="https://www.cls.cn/detail/2337093" target="_blank" rel="noreferrer">港股前瞻</a>
+        <a href="https://paper.cnstock.com/html/2026-04/08/content_2197416.htm" target="_blank" rel="noreferrer">基金分红</a>
+        <a href="https://www.stats.gov.cn/sj/zxfbhjd/202604/t20260403_1962983.html" target="_blank" rel="noreferrer">统计局生产资料</a>
+      </div>
+      <div class="disclaimer">说明：本页用于盘前信息总览与研究辅助，不构成任何投资建议；其中A股采用4月7日收盘数据，港股采用4月2日最近交易日收盘数据，商品采用4月7日最新可得公开报价。页面配色遵循中国市场惯例：上涨为红、下跌为绿。</div>
+    </footer>
+  </div>
+</body>
+</html>
