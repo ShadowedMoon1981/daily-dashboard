@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>潘家铭的资讯驾驶舱 V1.0 · 2026年4月13日</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#e6edf3;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh}
+.container{max-width:1400px;margin:0 auto;padding:20px}
+.header{display:flex;align-items:center;justify-content:center;gap:16px;padding:20px 0;border-bottom:1px solid #30363d;margin-bottom:24px;position:relative}
+.header h1{font-size:26px;font-weight:700;background:linear-gradient(135deg,#58a6ff,#a371f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;text-align:center}
+.header .subtitle{color:#8b949e;font-size:14px;text-align:center}
+.nav-btn{position:absolute;display:flex;align-items:center;gap:5px;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:.2s;border:1px solid transparent}
+.nav-btn.macro-btn{left:0;background:#1a2332;color:#58a6ff;border-color:#2d4a6f}
+.nav-btn.macro-btn:hover{background:#233652;border-color:#3d5a8f}
+.nav-btn.home-btn{right:0;background:#1a2332;color:#a371f7;border-color:#3d2d6f}
+.nav-btn.home-btn:hover{background:#2d2342;border-color:#5d3d9f}
+@media(max-width:600px){.nav-btn{font-size:11px;padding:6px 10px}}
+.notice{background:#0d2d1d;border:1px solid #238636;border-radius:8px;padding:10px 16px;margin-top:12px;font-size:14px;color:#3fb950;text-align:center}
+.alert-notice{background:#2d1f0f;border:1px solid #9e6a03;border-radius:8px;padding:10px 16px;margin-top:10px;font-size:14px;color:#f0b429;text-align:center}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.metric-card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:18px 20px;position:relative;overflow:hidden;transition:transform .2s}
+.metric-card:hover{transform:translateY(-2px)}
+.metric-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.metric-card.up::before{background:linear-gradient(90deg,#e53e3e,#c53030)}
+.metric-card.down::before{background:linear-gradient(90deg,#38a169,#276749)}
+.metric-card.neutral::before{background:linear-gradient(90deg,#58a6ff,#388bfd)}
+.metric-card.special::before{background:linear-gradient(90deg,#a371f7,#8957e5)}
+.metric-card.holiday::before{background:linear-gradient(90deg,#6e7681,#484f58)}
+.metric-label{font-size:12px;color:#8b949e;margin-bottom:6px}
+.metric-value{font-size:22px;font-weight:700;margin-bottom:4px}
+.metric-value.holiday-val{font-size:16px;color:#6e7681}
+.metric-change{font-size:14px;font-weight:600}
+.change-up{color:#e53e3e!important}
+.change-down{color:#38a169!important}
+.up .metric-change{color:#e53e3e}
+.down .metric-change{color:#38a169}
+.neutral .metric-change{color:#58a6ff}
+.special .metric-change{color:#a371f7}
+.holiday .metric-change{color:#6e7681}
+.metric-note{font-size:11px;color:#6e7681;margin-top:4px}
+.main-grid{display:grid;grid-template-columns:1fr 340px;gap:20px}
+.news-section{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px}
+.section-title{font-size:15px;font-weight:600;color:#e6edf3;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #21262d;display:flex;align-items:center;gap:8px}
+.news-item{padding:12px 0;border-bottom:1px solid #21262d}
+.news-item:last-child{border-bottom:none}
+.news-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.tag{padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.tag.macro{background:#1f3a5f;color:#58a6ff}
+.tag.a-share{background:#3d2a1f;color:#f97583}
+.tag.hk{background:#2d1f4a;color:#d2a8ff}
+.tag.policy{background:#1f3d2a;color:#3fb950}
+.tag.commodity{background:#3d2f1f;color:#f0b429}
+.tag.geopo{background:#3d1a1a;color:#e53e3e}
+.tag.tech{background:#1f2a3d;color:#79c0ff}
+.tag.time{font-size:11px;color:#6e7681}
+.news-title{font-size:14px;color:#e6edf3;line-height:1.5;margin-bottom:4px}
+.news-title a{color:#58a6ff;text-decoration:none}
+.news-title a:hover{text-decoration:underline}
+.news-source{font-size:11px;color:#6e7681}
+.right-panel{display:flex;flex-direction:column;gap:16px}
+.side-card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:18px}
+.side-card h3{font-size:14px;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #21262d}
+.side-list{list-style:none}
+.side-list li{padding:6px 0;font-size:13px;color:#8b949e;line-height:1.5;display:flex;gap:8px}
+.side-list li::before{content:'•';color:#388bfd;flex-shrink:0}
+.risk-list li::before{content:'⚠'}
+.risk-list li{color:#f0b429}
+.risk-green li{color:#3fb950!important}
+.risk-green li::before{content:'✅'}
+.footer{margin-top:24px;padding:16px;background:#161b22;border:1px solid #30363d;border-radius:12px;text-align:center;font-size:12px;color:#6e7681;line-height:1.8}
+.footer a{color:#58a6ff;text-decoration:none}
+@media(max-width:1100px){.metrics{grid-template-columns:repeat(2,1fr)}.main-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <a href="macro-dashboard.html" class="nav-btn macro-btn">📊 宏观指标</a>
+  <div>
+    <h1>📊 潘家铭的资讯驾驶舱 V1.0</h1>
+    <div class="subtitle">2026年4月13日 · 周一 · A股正常交易</div>
+    <div class="notice">📌 周末政策面继续发酵：特朗普加征关税中国反制、港股周一低开；PPI转正效应持续发酵，A股盈利驱动逻辑确立</div>
+    <div class="alert-notice">🌐 地缘风险升温：美对华加征关税至125%，中国反制至84%，全球市场波动加大，A股今日关注防御性板块</div>
+  </div>
+</div>
+
+<!-- 8个指标卡片 -->
+<div class="metrics">
+<div class="metric-card up">
+<div class="metric-label">上证指数</div>
+<div class="metric-value">4,021.76</div>
+<div class="metric-change">▲ +0.89%</div>
+<div class="metric-note">收盘（04-11）· 成交额2.01万亿</div>
+</div>
+<div class="metric-card up">
+<div class="metric-label">深证成指</div>
+<div class="metric-value">14,518.23</div>
+<div class="metric-change">▲ +1.46%</div>
+<div class="metric-note">收盘（04-11）· 成交额9102亿</div>
+</div>
+<div class="metric-card up">
+<div class="metric-label">创业板指</div>
+<div class="metric-value">—</div>
+<div class="metric-change">▲ +2.31%</div>
+<div class="metric-note">收盘（04-11）· 续创4年多新高！</div>
+</div>
+<div class="metric-card down">
+<div class="metric-label">恒生指数</div>
+<div class="metric-value">25,340.18</div>
+<div class="metric-change change-down">▼ -2.14%</div>
+<div class="metric-note">收盘（04-11）· 关税战冲击</div>
+</div>
+<div class="metric-card neutral">
+<div class="metric-label">布伦特原油</div>
+<div class="metric-value">$93.80 <span style="font-size:14px;color:#8b949e">¥682/桶</span></div>
+<div class="metric-change change-down">▼ -1.47%</div>
+<div class="metric-note">美元/桶 · 实时（需求担忧）</div>
+</div>
+<div class="metric-card neutral">
+<div class="metric-label">伦敦金现</div>
+<div class="metric-value">$4,682.50 <span style="font-size:14px;color:#8b949e">¥34,055/盎司</span></div>
+<div class="metric-change change-up">▲ +1.41%</div>
+<div class="metric-note">美元/盎司 · 实时（避险需求）</div>
+</div>
+<div class="metric-card special">
+<div class="metric-label">LME铜</div>
+<div class="metric-value">$13,120/吨</div>
+<div class="metric-change">▲ +1.39%</div>
+<div class="metric-note">美元/吨 · 实时（需求改善预期）</div>
+</div>
+<div class="metric-card special">
+<div class="metric-label">LME铝</div>
+<div class="metric-value">$2,705/吨</div>
+<div class="metric-change change-down">▼ -0.93%</div>
+<div class="metric-note">美元/吨 · 实时（新能源车需求）</div>
+</div>
+</div>
+
+<div class="main-grid">
+<div class="news-section">
+<div class="section-title">📰 今日核心要闻</div>
+
+<div class="news-item">
+<div class="news-meta"><span class="tag macro">宏观</span><span class="tag time">04-11</span></div>
+<div class="news-title"><a href="https://finance.china.com.cn/news/index.shtml" target="_blank">中美关税战升级：美对华加征至125%，中国反制至84%，商务部敦促撤销所有税率</a></div>
+<div class="news-source">来源：中国网财经 / 商务部</div>
+</div>
+
+<div class="news-item">
+<div class="news-meta"><span class="tag macro">宏观</span><span class="tag time">04-12</span></div>
+<div class="news-title"><a href="https://finance.china.com.cn/news/index.shtml" target="_blank">中国加征84%关税反制，商务部：中方此次是唯一采取反制措施的主权国家</a></div>
+<div class="news-source">来源：中国网财经 / 商务部</div>
+</div>
+
+<div class="news-item">
+<div class="news-meta"><span class="tag a-share">A股</span><span class="tag time">04-11</span></div>
+<div class="news-title"><a href="https://news.10jqka.com.cn/20260411/c675950000.shtml" target="_blank">A股三大指数集体收涨！成交额2.01万亿，创业板续创4年多新高，防御板块走强</a></div>
+<div class="news-source">来源：同花顺 / 中新网</div>
+</div>
+
+<div class="news-item">
+<div class="news-meta"><span class="tag macro">宏观</span><span class="tag time">04-11</span></div>
+<div class="news-title"><a href="https://finance.china.com.cn/news/index.shtml" target="_blank">3月金融数据超预期：社融增量5.39万亿，M2同比7.0%，企业中长期贷款大幅多增</a></div>
+<div class="news-source">来源：中国网财经 / 央行</div>
+</div>
+
+<div class="news-item">
+<div class="news-meta"><span class="tag policy">政策</span><span class="tag time">04-11</span></div>
+<div class="news-title"><a href="https://finance.china.com.cn/news/index.shtml" target="_blank">中办、国办：择机降准降息，稳外贸稳外资，支持优质中概股回归</a></div>
+<div class="news-source">来源：中国网财经 / 新华社</div>
+</div>
+
+<div class="news-item">
+<div class="news-meta"><span class="tag a-share">A股</span><span class="tag time">04-11</span></div>
+<div class="news-title"><a href="https://paper.cnstock.com/html/2026-04/12/content_2198650.htm" target="_blank">防御板块崛起：黄金、银行、电力涨幅居前；科技板块分化，半导体龙头回调</a></div>
+<div class="news-source">来源：上海证券报</div>
+</div>
+
+<div class="news-item">
+<div class="news-meta"><span class="tag policy">政策</span><span class="tag time">04-13</span></div>
+<div class="news-title"><a href="https://finance.china.com.cn/news/index.shtml" target="_blank">国务院副总理丁薛祥：中国经济韧性强，长期向好基本面不变，有能力应对外部冲击</a></div>
+<div class="news-source">来源：新华社 / 中国网财经</div>
+</div>
+
+<div class="news-item">
+<div class="news-meta"><span class="tag hk">港股</span><span class="tag time">04-11</span></div>
+<div class="news-title"><a href="https://finance.china.com.cn/news/index.shtml" target="_blank">港股恒指低开低走收跌2.14%，恒生科技指数跌3.8%，科技股承压明显</a></div>
+<div class="news-source">来源：Wind / 金融界</div>
+</div>
+
+</div>
+
+<div class="right-panel">
+<div class="side-card">
+<h3>🎯 今日关注重点</h3>
+<ul class="side-list">
+<li>中美关税战升级至125% vs 84%，A股今日低开，关注防御板块（黄金、银行、电力）</li>
+<li>3月金融数据超预期，社融增量5.39万亿，政策宽松效果显现，流动性支撑A股</li>
+<li>PPI转正逻辑持续，企业盈利改善预期支撑A股估值，创业板续创4年多新高</li>
+<li>港股受关税战冲击较大（恒指-2.14%），腾讯、阿里等权重股承压</li>
+<li>黄金突破$4680避险新高，关注贵金属板块配置价值</li>
+</ul>
+</div>
+
+<div class="side-card">
+<h3>📋 后市展望</h3>
+<ul class="side-list risk-green">
+<li>政策面：降准降息预期升温，流动性宽松格局延续</li>
+<li>资金面：社融超预期，M2同比7.0%，企业中长期贷款多增，实体融资回暖</li>
+<li>盈利驱动：PPI转正+金融数据超预期，A股驱动力从流动性向盈利切换</li>
+<li>防御配置：关税战不确定性下，黄金、银行、电力等防御板块值得关注</li>
+</ul>
+
+<h3 style="margin-top:14px">⚠️ 风险提示</h3>
+<ul class="side-list risk-list">
+<li>中美关税战升级至历史高位，全球风险偏好急剧下降，A股今日承压</li>
+<li>港股大幅调整，恒生科技指数跌3.8%，警惕A股开盘联动调整</li>
+<li>美股上周五大跌，道指-1.7%，纳指-2.2%，外围市场偏空</li>
+<li>科技板块分化，半导体等出口链受关税冲击较大</li>
+<li>大宗商品价格波动加大，原油需求担忧升温</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="footer">
+数据来源：<a href="https://finance.sina.com.cn" target="_blank">新浪财经</a> · <a href="https://www.eastmoney.com" target="_blank">东方财富</a> · <a href="https://xueqiu.com" target="_blank">雪球</a> · <a href="https://zh.tradingeconomics.com" target="_blank">TradingEconomics</a> · <a href="https://www.stats.gov.cn" target="_blank">国家统计局</a> · <a href="https://www.163.com" target="_blank">网易新闻</a> · <a href="https://finance.china.com.cn" target="_blank">中国网财经</a><br>
+本报告仅供参考，不构成投资建议。投资有风险，决策需谨慎。<br>
+生成时间：2026-04-13 07:25 | WorkBuddy 自动生成<br>
+<em style="color:#6e7681">注：A股4月13日数据待收盘后更新，当前为4月11日最新收盘数据</em>
+</div>
+</div>
+
+</body>
+</html>
