@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投资日报 · 2026年4月25日</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #1c2128;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #484f58;
+    --red: #f85149;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --yellow: #d29922;
+    --purple: #bc8cff;
+    --orange: #e3b341;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px 16px; }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    margin-bottom: 24px;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
+  }
+  .header-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .date-badge {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+    color: var(--blue);
+    font-weight: 500;
+  }
+
+  /* Section */
+  .section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 16px;
+    background: var(--blue);
+    border-radius: 2px;
+  }
+
+  /* Market Grid */
+  .market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .market-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: border-color 0.2s;
+  }
+  .market-card:hover { border-color: var(--blue); }
+  .market-card .label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .market-card .price {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .market-card .change {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .market-card .sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+  .up { color: var(--red); }
+  .down { color: var(--green); }
+  .flat { color: var(--text-secondary); }
+  .up-border { border-left: 3px solid var(--red); }
+  .down-border { border-left: 3px solid var(--green); }
+
+  /* Macro Section */
+  .macro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .macro-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .macro-card .m-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .macro-card .m-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .macro-card .m-unit {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-left: 4px;
+  }
+  .macro-card .m-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+  .macro-card .m-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+  .tag-positive { background: rgba(63, 185, 80, 0.15); color: var(--green); }
+  .tag-neutral { background: rgba(88, 166, 255, 0.15); color: var(--blue); }
+  .tag-warning { background: rgba(248, 81, 73, 0.12); color: var(--red); }
+
+  /* News */
+  .news-list { margin-bottom: 28px; }
+  .news-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .news-item:hover { border-color: var(--border); background: #1f2937; }
+  .news-num {
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .news-content .news-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .news-content .news-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .news-tag {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-right: 6px;
+  }
+  .tag-market { background: rgba(88, 166, 255, 0.15); color: var(--blue); }
+  .tag-policy { background: rgba(210, 153, 34, 0.15); color: var(--yellow); }
+  .tag-commodity { background: rgba(188, 140, 255, 0.15); color: var(--purple); }
+  .tag-intl { background: rgba(63, 185, 80, 0.12); color: var(--green); }
+
+  /* Chart Area */
+  .chart-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+  .chart-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+  .charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 700px) {
+    .charts-row { grid-template-columns: 1fr; }
+    .market-grid { grid-template-columns: repeat(2, 1fr); }
+    .header-inner { flex-direction: column; gap: 10px; }
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    margin-top: 16px;
+  }
+
+  /* Summary Banner */
+  .summary-banner {
+    background: linear-gradient(135deg, #1a2332 0%, #1c2128 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .summary-icon { font-size: 20px; flex-shrink: 0; }
+  .summary-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .summary-text strong { color: var(--text-primary); }
+  .note-bar {
+    background: rgba(210, 153, 34, 0.08);
+    border: 1px solid rgba(210, 153, 34, 0.25);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--yellow);
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <h1>📊 投资日报</h1>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span class="header-meta">数据截至 4月24日（周五）收盘</span>
+      <span class="date-badge">2026年4月25日</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="note-bar">
+    ⚠️ 今日（4月25日）为周六，A股及港股休市。本报数据为最近一个交易日（4月24日）收盘数据，大宗商品部分含4月25日盘中报价。
+  </div>
+
+  <!-- 一句话摘要 -->
+  <div class="summary-banner">
+    <div class="summary-icon">💡</div>
+    <div class="summary-text">
+      <strong>市场摘要：</strong>本周A股先扬后抑，4月24日三大指数集体收跌。<strong>沪指报4079.90点（-0.33%）</strong>，创业板指跌幅最大（-1.41%）。港股周五微幅回稳，恒生指数收涨0.24%。大宗商品方面，
+      <strong>黄金4708美元/盎司</strong>高位震荡，<strong>布伦特原油105.33美元/桶</strong>地缘局势推动高位运行。宏观面，3月<strong>CPI同比+1.0%</strong>，<strong>PPI结束41个月连降转正+0.5%</strong>，制造业PMI 50.4%重返扩张区间。
+    </div>
+  </div>
+
+  <!-- ===== 市场指数 ===== -->
+  <div class="section-title">市场指数</div>
+  <div class="market-grid">
+    <!-- A股 -->
+    <div class="market-card down-border">
+      <div class="label">上证指数</div>
+      <div class="price down">4,079.90</div>
+      <div class="change down">▼ -0.33% (-13.35)</div>
+      <div class="sub">成交额 1,143亿 · 周跌0.33%</div>
+    </div>
+    <div class="market-card down-border">
+      <div class="label">深证成指</div>
+      <div class="price down">14,940.30</div>
+      <div class="change down">▼ -0.69% (-103.15)</div>
+      <div class="sub">4月24日收盘</div>
+    </div>
+    <div class="market-card down-border">
+      <div class="label">创业板指</div>
+      <div class="price down">3,667.79</div>
+      <div class="change down">▼ -1.41% (-52.46)</div>
+      <div class="sub">科创50涨1.47%</div>
+    </div>
+    <div class="market-card down-border">
+      <div class="label">沪深300</div>
+      <div class="price down">4,769.37</div>
+      <div class="change down">▼ -0.35% (-16.96)</div>
+      <div class="sub">4月累计跌5.53%</div>
+    </div>
+    <!-- 港股 -->
+    <div class="market-card up-border">
+      <div class="label">恒生指数</div>
+      <div class="price up">25,978.07</div>
+      <div class="change up">▲ +0.24% (+62.87)</div>
+      <div class="sub">周跌0.70%</div>
+    </div>
+    <div class="market-card up-border">
+      <div class="label">恒生科技</div>
+      <div class="price up">4,902.20</div>
+      <div class="change up">▲ +0.75% (+36.68)</div>
+      <div class="sub">芯片领涨，华虹+15%</div>
+    </div>
+  </div>
+
+  <!-- ===== 大宗商品 ===== -->
+  <div class="section-title">大宗商品</div>
+  <div class="market-grid">
+    <div class="market-card up-border">
+      <div class="label">布伦特原油</div>
+      <div class="price up">105.33</div>
+      <div class="change up">▲ +0.25%</div>
+      <div class="sub">美元/桶 · 地缘高位震荡</div>
+    </div>
+    <div class="market-card up-border">
+      <div class="label">伦敦金现 (XAU)</div>
+      <div class="price up">4,708.79</div>
+      <div class="change up">▲ 高位震荡</div>
+      <div class="sub">美元/盎司 · 4月25日</div>
+    </div>
+    <div class="market-card down-border">
+      <div class="label">LME 铜</div>
+      <div class="price down">13,310</div>
+      <div class="change down">▼ -46美元 (-0.34%)</div>
+      <div class="sub">美元/吨 · 4月25日收盘</div>
+    </div>
+  </div>
+
+  <!-- ===== 图表区域 ===== -->
+  <div class="charts-row">
+    <div class="chart-wrap">
+      <div class="chart-title">📉 A股指数涨跌幅（4月24日）</div>
+      <canvas id="chartAShare" height="200"></canvas>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">🌐 大宗商品近期价格（归一化）</div>
+      <canvas id="chartCommodity" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- ===== 宏观数据 ===== -->
+  <div class="section-title">宏观数据（2026年3月）</div>
+  <div class="macro-grid">
+    <div class="macro-card">
+      <div class="m-label">CPI 居民消费价格</div>
+      <div class="m-value">+1.0<span class="m-unit">% 同比</span></div>
+      <div class="m-note">环比 -0.7%｜核心CPI同比+1.1%</div>
+      <span class="m-tag tag-neutral">温和运行</span>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">PPI 工业出厂价格</div>
+      <div class="m-value">+0.5<span class="m-unit">% 同比</span></div>
+      <div class="m-note">结束连续41个月同比下降，首次转正</div>
+      <span class="m-tag tag-positive">重大拐点</span>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">制造业 PMI</div>
+      <div class="m-value">50.4<span class="m-unit">%</span></div>
+      <div class="m-note">环比+1.4pct，重返扩张区间（临界50%）</div>
+      <span class="m-tag tag-positive">扩张区间</span>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">非制造业 PMI</div>
+      <div class="m-value">50.1<span class="m-unit">%</span></div>
+      <div class="m-note">综合PMI产出指数50.5%，景气持续</div>
+      <span class="m-tag tag-positive">景气扩张</span>
+    </div>
+    <div class="macro-card">
+      <div class="m-label">一季度 GDP</div>
+      <div class="m-value">+5.0<span class="m-unit">% 同比</span></div>
+      <div class="m-note">总量334193亿元，环比增长1.3%</div>
+      <span class="m-tag tag-positive">达成目标</span>
+    </div>
+  </div>
+
+  <!-- 宏观图表 -->
+  <div class="chart-wrap">
+    <div class="chart-title">📊 宏观指标对比（CPI / PPI / PMI）</div>
+    <canvas id="chartMacro" height="120"></canvas>
+  </div>
+
+  <!-- ===== 今日要闻 ===== -->
+  <div class="section-title">今日要闻 · 4月25日</div>
+  <div class="news-list">
+
+    <div class="news-item">
+      <div class="news-num">1</div>
+      <div class="news-content">
+        <div class="news-title">
+          <span class="news-tag tag-policy">交易所改革</span>上交所、北交所修订交易规则，7月6日起实施
+        </div>
+        <div class="news-desc">盘后固定价格交易扩大至全部A股及ETF；主板风险警示股涨跌幅限制调整为±10%；北交所新增盘后固定价格交易机制，交易制度持续优化完善。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-num">2</div>
+      <div class="news-content">
+        <div class="news-title">
+          <span class="news-tag tag-market">楼市</span>三大国际投行集体看多中国一线城市楼市
+        </div>
+        <div class="news-desc">高盛预计上海、深圳房价2025-2028年累计涨15%；摩根大通认为香港楼市复苏将产生外溢效应；瑞银称政策松绑使一线城市有回升空间。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-num">3</div>
+      <div class="news-content">
+        <div class="news-title">
+          <span class="news-tag tag-market">科技</span>英特尔Q1营收超预期，半导体板块全线受益
+        </div>
+        <div class="news-desc">英特尔一季度营收136亿美元，同比+7%，超市场预期；数据中心与AI业务营收同比+22%；盘后股价大涨16%，带动港股华虹半导体、中芯国际今日大幅上涨。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-num">4</div>
+      <div class="news-content">
+        <div class="news-title">
+          <span class="news-tag tag-commodity">大宗</span>摩根大通警告：原油供给缺口被掩盖，冲击将至
+        </div>
+        <div class="news-desc">霍尔木兹海峡持续封锁导致中东原油供应紧张，美伊谈判陷入僵局；布伦特原油维持在105美元上方高位震荡；WTI日内波动超5美元，多空分歧加剧。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-num">5</div>
+      <div class="news-content">
+        <div class="news-title">
+          <span class="news-tag tag-market">A股</span>2026北京车展开幕，锂矿概念爆发
+        </div>
+        <div class="news-desc">4月24日A股，锂矿板块集体爆发，江特电机等多股涨停；科创50涨1.47%表现最强；能源金属、农化制品等板块领涨；公用事业、航天装备等板块较弱。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-num">6</div>
+      <div class="news-content">
+        <div class="news-title">
+          <span class="news-tag tag-intl">宏观</span>俄罗斯央行年内第三次降息，下调50bp至14.5%
+        </div>
+        <div class="news-desc">俄罗斯央行将基准利率从15%降至14.5%，为2026年内第三次降息，显示其通胀控制取得进展；全球主要央行货币政策分化格局延续。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-num">7</div>
+      <div class="news-content">
+        <div class="news-title">
+          <span class="news-tag tag-policy">监管</span>PPI结束41个月连降，转正0.5%，工业景气度回暖
+        </div>
+        <div class="news-desc">国家统计局：3月PPI同比+0.5%，为连降41个月后首次转正，主因国内供求改善与输入性通胀压力（能源高价）推动；叠加制造业PMI重返扩张，经济复苏信号增强。</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-num">8</div>
+      <div class="news-content">
+        <div class="news-title">
+          <span class="news-tag tag-market">新股</span>联讯仪器上市，中签浮盈38.9万，年内最大"肉签"
+        </div>
+        <div class="news-desc">联讯仪器今日上市，盘中最高涨幅达950.17%，中一签浮盈约38.9万元，成为2026年内最大"肉签"。首例"闯关赴美上市"企业将受处罚，合规意识再度受到关注。</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  数据来源：东方财富 / 新浪财经 / 同花顺 / 国家统计局 / 芝麻AI速递<br>
+  本报告仅供参考，不构成投资建议 · 生成时间：2026-04-25 11:22
+</div>
+
+<script>
+// A股指数涨跌幅
+const ctxA = document.getElementById('chartAShare').getContext('2d');
+new Chart(ctxA, {
+  type: 'bar',
+  data: {
+    labels: ['上证指数', '深证成指', '创业板指', '沪深300', '科创50', '恒生指数', '恒生科技'],
+    datasets: [{
+      label: '涨跌幅 (%)',
+      data: [-0.33, -0.69, -1.41, -0.35, 1.47, 0.24, 0.75],
+      backgroundColor: [
+        '#3fb950', '#3fb950', '#3fb950', '#3fb950',
+        '#f85149', '#f85149', '#f85149'
+      ],
+      borderRadius: 6,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ` ${ctx.raw > 0 ? '+' : ''}${ctx.raw}%`
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { color: '#8b949e', font: { size: 11 } },
+        grid: { color: '#21262d' }
+      },
+      y: {
+        ticks: {
+          color: '#8b949e',
+          callback: v => v + '%'
+        },
+        grid: { color: '#21262d' }
+      }
+    }
+  }
+});
+
+// 大宗商品（当前价格对比基准参考）
+const ctxC = document.getElementById('chartCommodity').getContext('2d');
+new Chart(ctxC, {
+  type: 'bar',
+  data: {
+    labels: ['布伦特原油\n(美元/桶)', '伦敦金现\n(美元/盎司÷10)', 'LME铜\n(美元/吨÷100)'],
+    datasets: [{
+      label: '价格',
+      data: [105.33, 470.88, 133.10],
+      backgroundColor: ['#e3b341', '#bc8cff', '#58a6ff'],
+      borderRadius: 6,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => {
+            const labels = ['105.33 美元/桶', '4,708.79 美元/盎司', '13,310 美元/吨'];
+            return ' ' + labels[ctx.dataIndex];
+          }
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { color: '#8b949e', font: { size: 11 } }, grid: { color: '#21262d' } },
+      y: { ticks: { color: '#8b949e' }, grid: { color: '#21262d' } }
+    }
+  }
+});
+
+// 宏观指标
+const ctxM = document.getElementById('chartMacro').getContext('2d');
+new Chart(ctxM, {
+  type: 'bar',
+  data: {
+    labels: ['CPI同比', 'PPI同比', '制造业PMI', '非制造业PMI', '综合PMI', 'GDP同比（Q1）'],
+    datasets: [{
+      label: '数值',
+      data: [1.0, 0.5, 50.4, 50.1, 50.5, 5.0],
+      backgroundColor: ['#58a6ff', '#3fb950', '#e3b341', '#bc8cff', '#f85149', '#58a6ff'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => {
+            const units = ['%', '%', '%', '%', '%', '%'];
+            return ` ${ctx.raw}${units[ctx.dataIndex]}`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { color: '#8b949e', font: { size: 11 } }, grid: { color: '#21262d' } },
+      y: { ticks: { color: '#8b949e', callback: v => v + '%' }, grid: { color: '#21262d' }, min: 0 }
+    }
+  }
+});
+</script>
+</body>
+</html>
