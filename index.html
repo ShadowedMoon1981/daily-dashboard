@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投资日报 2026-05-01</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid #30363d;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 28px; color: #58a6ff; margin-bottom: 10px; }
+        .header .date { color: #8b949e; font-size: 16px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .card h2 {
+            font-size: 16px;
+            color: #8b949e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .index-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #21262d;
+        }
+        .index-item:last-child { border-bottom: none; }
+        .index-name { color: #e6edf3; }
+        .index-value { font-weight: 600; }
+        .up { color: #f85149; }
+        .down { color: #3fb950; }
+        .flat { color: #8b949e; }
+        .positive { color: #3fb950; }
+        .macro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .macro-item {
+            background: #21262d;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+        }
+        .macro-item .label { font-size: 14px; color: #8b949e; margin-bottom: 5px; }
+        .macro-item .value { font-size: 24px; font-weight: 700; }
+        .news-section { margin-top: 30px; }
+        .news-item {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+        }
+        .news-item h3 { font-size: 15px; color: #58a6ff; margin-bottom: 8px; }
+        .news-item p { font-size: 14px; color: #8b949e; line-height: 1.7; }
+        .news-item .tag {
+            display: inline-block;
+            background: #1f6feb33;
+            color: #58a6ff;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid #30363d;
+            color: #8b949e;
+            font-size: 13px;
+        }
+        .section-title {
+            font-size: 18px;
+            color: #58a6ff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .highlight-box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .highlight-box h3 { color: #f0883e; font-size: 15px; margin-bottom: 12px; }
+        .highlight-box ul { list-style: none; padding: 0; }
+        .highlight-box ul li { padding: 6px 0; color: #8b949e; font-size: 14px; border-bottom: 1px solid #21262d; }
+        .highlight-box ul li:last-child { border-bottom: none; }
+        .tag-hot { background: #f8514933; color: #f85149; }
+        .tag-policy { background: #a371f733; color: #a371f7; }
+        .tag-ai { background: #3fb95033; color: #3fb950; }
+        @media (max-width: 768px) {
+            .macro-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 投资日报</h1>
+            <div class="date">2026年5月1日 星期五 | 五一劳动节假期 · A股/港股休市 | 数据截至4月30日收盘</div>
+        </div>
+
+        <!-- 市场概览 -->
+        <div class="highlight-box">
+            <h3>⚡ 今日市场直击</h3>
+            <ul>
+                <li>A股4月完美收官：创业板指<strong class="up">+15.45%</strong>创十年新高，科创50单日<strong class="up">+5.19%</strong>，寒武纪等半导体龙头集体20%涨停</li>
+                <li>港股回调：恒生指数跌<strong class="down">-1.28%</strong>至25,776.53，恒生科技跌<strong class="down">-0.79%</strong>至4,871.32（5月1日休市）</li>
+                <li>美股4月暴涨：标普500收<strong class="up">7,209.01点</strong>（4月累涨<strong class="up">+10.42%</strong>），纳指<strong class="up">+15.29%</strong>，均创历史新高</li>
+                <li>原油4月累涨<strong class="up">+12.78%</strong>，WTI收$105.90/桶，布伦特$114.01；黄金高位震荡，COMEX金$4,630/盎司</li>
+                <li>苹果财报超预期：营收<strong class="up">+17%</strong>至1111.8亿美元，大中华区<strong class="up">+28%</strong>，盘后涨近4%</li>
+            </ul>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>🌐 A股市场指数（2026-04-30 收盘）</h2>
+                <div class="index-item">
+                    <span class="index-name">上证指数</span>
+                    <span class="index-value">4,112.16 <span class="up">▲ +0.11%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">深证成指</span>
+                    <span class="index-value">15,107.55 <span class="down">▼ -0.09%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">创业板指</span>
+                    <span class="index-value">3,677.15 <span class="down">▼ -0.27%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">科创50</span>
+                    <span class="index-value">1,571.07 <span class="up">▲ +5.19%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">北证50</span>
+                    <span class="index-value">— <span class="flat">▼ -0.12%</span></span>
+                </div>
+                <p style="margin-top:10px;font-size:12px;color:#8b949e;">4月沪指累涨<strong class="up">+5.66%</strong>，创业板<strong class="up">+15.45%</strong>，科创50<strong class="up">+25.05%</strong> | 全市场成交额27,592亿元</p>
+            </div>
+
+            <div class="card">
+                <h2>🌏 港股及海外指数</h2>
+                <div class="index-item">
+                    <span class="index-name">恒生指数（04-30）</span>
+                    <span class="index-value">25,776.53 <span class="down">▼ -1.28%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">恒生科技指数（04-30）</span>
+                    <span class="index-value">4,871.32 <span class="down">▼ -0.79%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">恒生国企指数（04-30）</span>
+                    <span class="index-value">— <span class="flat">—</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">标普500（04-30）</span>
+                    <span class="index-value">7,209.01 <span class="up">▲ +1.02%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">纳斯达克（04-30）</span>
+                    <span class="index-value">24,892.31 <span class="up">▲ +0.89%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">道琼斯（04-30）</span>
+                    <span class="index-value">49,652.14 <span class="up">▲ +1.62%</span></span>
+                </div>
+                <p style="margin-top:10px;font-size:12px;color:#8b949e;">港股5月1日劳动节休市 | 美股4月标普累涨<strong class="up">+10.42%</strong>（2000年来最大月度涨幅）</p>
+            </div>
+
+            <div class="card">
+                <h2>🛢️ 大宗商品（2026-04-30 收盘）</h2>
+                <div class="index-item">
+                    <span class="index-name">WTI原油</span>
+                    <span class="index-value up">$105.90 <span class="up">▲ +0.79%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">布伦特原油</span>
+                    <span class="index-value up">$114.01 <span class="up">▲ —</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">COMEX黄金</span>
+                    <span class="index-value flat">$4,630 <span class="flat">▲ +0.01%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">伦敦金现货</span>
+                    <span class="index-value down">$4,614.69 <span class="down">▼ -0.14%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">上海金现货</span>
+                    <span class="index-value up">¥1,013.60/克 <span class="up">▲ +0.37%</span></span>
+                </div>
+                <div class="index-item">
+                    <span class="index-name">COMEX铜</span>
+                    <span class="index-value up">$6.031 <span class="up">▲ +0.84%</span></span>
+                </div>
+                <p style="margin-top:10px;font-size:12px;color:#8b949e;">WTI 4月累涨<strong class="up">+12.78%</strong> | 黄金较高点$5,626回落约18%</p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 30px;">
+            <h2>📈 宏观数据</h2>
+            <div class="macro-grid">
+                <div class="macro-item">
+                    <div class="label">制造业PMI（4月）</div>
+                    <div class="value up">50.3%</div>
+                    <div style="font-size:11px;color:#3fb950;margin-top:4px;">连续扩张，-0.1pp</div>
+                </div>
+                <div class="macro-item">
+                    <div class="label">综合PMI（4月）</div>
+                    <div class="value up">50.1%</div>
+                    <div style="font-size:11px;color:#3fb950;margin-top:4px;">总体扩张，-0.4pp</div>
+                </div>
+                <div class="macro-item">
+                    <div class="label">建筑业PMI（4月）</div>
+                    <div class="value down">48.0%</div>
+                    <div style="font-size:11px;color:#f85149;margin-top:4px;">跌破荣枯线</div>
+                </div>
+                <div class="macro-item">
+                    <div class="label">服务业PMI（4月）</div>
+                    <div class="value down">49.6%</div>
+                    <div style="font-size:11px;color:#f85149;margin-top:4px;">跌破荣枯线</div>
+                </div>
+                <div class="macro-item">
+                    <div class="label">CPI同比（3月）</div>
+                    <div class="value">+1.0%</div>
+                    <div style="font-size:11px;color:#8b949e;margin-top:4px;">核心CPI +1.1%</div>
+                </div>
+                <div class="macro-item">
+                    <div class="label">PPI同比（3月）</div>
+                    <div class="value up">+0.5%</div>
+                    <div style="font-size:11px;color:#3fb950;margin-top:4px;">41个月来首次转正</div>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-size: 13px; color: #8b949e;">
+                注：制造业PMI连续两月扩张但动能放缓，建筑业/服务业跌破荣枯线。经济呈"外需偏强、内需偏弱"格局。PPI转正反映工业品价格回升。
+            </p>
+        </div>
+
+        <div class="news-section">
+            <div class="section-title">📰 今日要闻</div>
+
+            <div class="news-item">
+                <h3><span class="tag tag-ai">AI/科技</span>苹果财报超预期：营收1111.8亿美元+17%，大中华区+28%，盘后涨近4%</h3>
+                <p>苹果2026财年Q2：营收1111.8亿美元（同比+17%，市场预期1096.6亿），净利润295.78亿美元（+19%），EPS 2.01美元（超预期1.94）。iPhone 17系列全球爆发，大中华区收入同比+28%。公司额外回购1000亿美元股票，季度股息上调至每股0.27美元。</p>
+            </div>
+
+            <div class="news-item">
+                <h3><span class="tag tag-hot">美股</span>标普500创2000年来最大月度涨幅：4月累涨10.42%，纳指累涨15.29%</h3>
+                <p>4月30日美股三大指数集体收涨：标普500收7209.01点历史新高（4月累涨+10.42%），纳指24892.31点历史新高（4月+15.29%），道指49652.14点（4月+7.14%）。卡特彼勒、Alphabet财报超预期支撑；微软、Meta因AI资本支出激进遭抛售。费城半导体指数今年累涨41.7%。</p>
+            </div>
+
+            <div class="news-item">
+                <h3><span class="tag tag-ai">AI/科技</span>科创50单日暴涨5.19%，寒武纪等20%涨停，4月累涨25.05%</h3>
+                <p>4月30日科创50指数收1571.07点，单日涨5.19%，成分股寒武纪、芯原股份、凌云光、日联科技、明微电子集体20%涨停。科创50ETF易方达全天成交超26亿元。但浙商证券等机构警示：全市场前5%股票交易额占比达46%，逼近微观结构恶化阈值，建议勿追高。</p>
+            </div>
+
+            <div class="news-item">
+                <h3><span class="tag tag-hot">市场</span>创业板指4月累涨15.45%创十年新高，突破2015年6月高点</h3>
+                <p>创业板指收3677.15点，4月累涨15.45%，突破2015年6月3日高点刷新十年纪录，创业板综指同步创历史新高。沪指4112.16点站稳4100关口，4月累涨5.66%。4月全市场成交活跃，4月30日成交额27592亿元。</p>
+            </div>
+
+            <div class="news-item">
+                <h3><span class="tag tag-hot">港股</span>港股恒指重挫1.28%，恒生科技跌0.79%，逼近26000关口</h3>
+                <p>恒生指数收25776.53点（-1.28%），恒生科技指数收4871.32点（-0.79%），较前日明显回调。港股5月1日因劳动节休市，5月4日复市。瑞银中国预测港股未来两个月有潜在上涨空间，尤其恒生科技有望受益于反垄断调查完结。</p>
+            </div>
+
+            <div class="news-item">
+                <h3><span class="tag">宏观</span>中国4月PMI：制造业连续扩张但建筑业/服务业跌破荣枯线</h3>
+                <p>国家统计局4月30日发布：制造业PMI 50.3%（-0.1pp，连续扩张），建筑业48%（前49.3%，跌破荣枯线），服务业49.6%（前50.2%，跌破荣枯线），综合PMI 50.1%。分析师解读：经济边际修复但动能放缓，呈现"生产有韧性、外需偏强、内需偏弱"特征。</p>
+            </div>
+
+            <div class="news-item">
+                <h3><span class="tag">大宗商品</span>原油4月累涨近13%突破$105，布伦特曾触及$126后回落</h3>
+                <p>WTI原油6月期货收报$105.90/桶，4月累涨超12.78%；布伦特6月收报$114.01/桶，4月累涨超9.56%，4月30日亚太午盘布伦特曾触及$126.41高点。标普上调2026年WTI及布伦特价格预期15美元/桶。黄金高位震荡，COMEX金$4630，伦敦金现$4614.69。</p>
+            </div>
+
+            <div class="news-item">
+                <h3><span class="tag">事件</span>巴菲特股东大会5月2日开幕，阿贝尔首次独立主持</h3>
+                <p>2026年巴菲特股东大会将于5月3日凌晨举行，巴菲特退居台下化身特殊观众，由阿贝尔首次独立主持，被视为"巴菲特时代正式落幕"。第一财经将第一时间直播解读。5月1日美股正常交易。</p>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <p>📊 数据来源：NeoData金融API（实时行情）/ 国家统计局 / 财经媒体 | 生成时间：2026-05-01</p>
+            <p>⚠️ 本日报仅供参考，不构成投资建议</p>
+        </div>
+    </div>
+</body>
+</html>
