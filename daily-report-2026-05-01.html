@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投资日报 2026-05-01</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-red: #f85149;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --border-color: #30363d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .header .date {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .section {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .market-card {
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+        }
+        .market-card .name {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .market-card .price {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .market-card .change {
+            font-size: 14px;
+        }
+        .up { color: var(--accent-red); }
+        .down { color: var(--accent-green); }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .data-table th, .data-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .data-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 13px;
+        }
+        .data-table td { font-size: 14px; }
+        .data-table .num { text-align: right; }
+        .news-list {
+            list-style: none;
+        }
+        .news-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+        }
+        .news-list li:last-child { border-bottom: none; }
+        .news-list .tag {
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        .news-list .content { flex: 1; }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+        .chart-container {
+            height: 300px;
+            margin-top: 16px;
+        }
+        .summary-box {
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 12px;
+            border-left: 3px solid var(--accent-blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 投资日报</h1>
+            <div class="date">2026年5月1日 星期五 | 4月收官数据</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🌐 市场指数</div>
+            <div class="market-grid">
+                <div class="market-card">
+                    <div class="name">上证指数</div>
+                    <div class="price">4,116.83</div>
+                    <div class="change down">▲ +0.11%</div>
+                </div>
+                <div class="market-card">
+                    <div class="name">深证成指</div>
+                    <div class="price">14,920.52</div>
+                    <div class="change up">▼ -0.09%</div>
+                </div>
+                <div class="market-card">
+                    <div class="name">创业板指</div>
+                    <div class="price">3,677.15</div>
+                    <div class="change up">▼ -0.27%</div>
+                </div>
+                <div class="market-card">
+                    <div class="name">恒生指数</div>
+                    <div class="price">26,011.84</div>
+                    <div class="change down">▲ +1.68%</div>
+                </div>
+                <div class="market-card">
+                    <div class="name">恒生科技指数</div>
+                    <div class="price">4,908.32</div>
+                    <div class="change down">▲ +1.72%</div>
+                </div>
+            </div>
+            <div class="summary-box">
+                <strong>市场概况：</strong>A股4月收官，沪指4月累涨5.66%站稳4100点，创业板指4月累涨15.45%刷新十年新高，科创50指数4月累涨25.05%表现最为亮眼。港股4月29日大涨，恒指重回26000点。
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🛢️ 大宗商品</div>
+            <div class="market-grid">
+                <div class="market-card">
+                    <div class="name">布伦特原油</div>
+                    <div class="price">$120.47</div>
+                    <div class="change down">▲ +8.28%</div>
+                </div>
+                <div class="market-card">
+                    <div class="name">上海黄金T+D</div>
+                    <div class="price">¥1,016.12/克</div>
+                    <div class="change up">▲ +1.21%</div>
+                </div>
+                <div class="market-card">
+                    <div class="name">LME铜</div>
+                    <div class="price">$13,289</div>
+                    <div class="change up">▼ -0.16%</div>
+                </div>
+                <div class="market-card">
+                    <div class="name">美股标普500</div>
+                    <div class="price">5,842.25</div>
+                    <div class="change down">▲ +10.42% (4月)</div>
+                </div>
+            </div>
+            <div class="summary-box">
+                <strong>商品概况：</strong>阿联酋宣布5月1日起退出OPEC+推动油价大涨8.28%至120美元上方；黄金价格小幅上涨；铜价承压。4月美股标普500累涨10.42%，纳指累涨15.29%。
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📈 宏观数据</div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>指标</th>
+                        <th class="num">最新值</th>
+                        <th class="num">前值</th>
+                        <th class="num">变动</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Q1 GDP 同比</td>
+                        <td class="num">+5.0%</td>
+                        <td class="num">+5.4%</td>
+                        <td class="num up">▼ -0.4pct</td>
+                    </tr>
+                    <tr>
+                        <td>CPI 同比 (3月)</td>
+                        <td class="num">+1.0%</td>
+                        <td class="num">+1.3%</td>
+                        <td class="num up">▼ -0.3pct</td>
+                    </tr>
+                    <tr>
+                        <td>PPI 同比 (3月)</td>
+                        <td class="num">+0.5%</td>
+                        <td class="num">-0.9%</td>
+                        <td class="num down">▲ +1.4pct 转正</td>
+                    </tr>
+                    <tr>
+                        <td>制造业PMI (4月)</td>
+                        <td class="num">50.3%</td>
+                        <td class="num">50.4%</td>
+                        <td class="num up">▼ -0.1pct</td>
+                    </tr>
+                    <tr>
+                        <td>非制造业PMI (4月)</td>
+                        <td class="num">49.4%</td>
+                        <td class="num">50.1%</td>
+                        <td class="num up">▼ -0.7pct</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="summary-box">
+                <strong>宏观要点：</strong>制造业PMI连续2月处于扩张区间，景气水平总体稳定；非制造业PMI再度跌入收缩区间。4月数据整体好于季节性，经济修复态势延续。
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📰 要闻简报</div>
+            <ul class="news-list">
+                <li>
+                    <span class="tag">政策</span>
+                    <span class="content">5月1日起中国对所有非洲建交国实施零关税<br><small style="color:var(--text-secondary)">中国将成为全球首个对所有非洲建交国和最不发达国家实现单方面、全覆盖零关税待遇的主要经济体，涵盖20个非最不发达国家+33个最不发达国家</small></span>
+                </li>
+                <li>
+                    <span class="tag">市场</span>
+                    <span class="content">A股劳动节休市安排：5月1日至5日休市，6日起正常开市<br><small style="color:var(--text-secondary)">上交所、深交所、北交所同步发布公告，5月6日（周三）起恢复交易</small></span>
+                </li>
+                <li>
+                    <span class="tag">美股</span>
+                    <span class="content">美股4月大涨，纳指累涨15.29%创历史最大月度涨幅之一<br><small style="color:var(--text-secondary)">标普500累涨10.42%，道指累涨7.14%。卡特彼勒、Alphabet业绩超预期，但微软、Meta因AI支出上调遭抛售</small></span>
+                </li>
+                <li>
+                    <span class="tag">外汇</span>
+                    <span class="content">日元跌破160关口，创2024年7月以来最弱水平<br><small style="color:var(--text-secondary)">4月30日日元兑美元一度触及160.72，日本财务大臣警告口头干预但贬值趋势难改</small></span>
+                </li>
+                <li>
+                    <span class="tag">能源</span>
+                    <span class="content">阿联酋宣布退出OPEC+，5月起逐步提高石油产量<br><small style="color:var(--text-secondary)">市场焦点仍在美伊谈判，布伦特原油升至120美元上方，为美伊停火协议前夕以来最高</small></span>
+                </li>
+                <li>
+                    <span class="tag">A股</span>
+                    <span class="content">科创50指数4月累涨25%，半导体板块成最强主线<br><small style="color:var(--text-secondary)">创业板指刷新十年新高，寒武纪晋升A股股王。4月全月近2800只个股上涨，成交额放量</small></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🔍 机构观点</div>
+            <ul class="news-list">
+                <li>
+                    <span class="tag">国盛证券</span>
+                    <span class="content">4月制造业PMI强于季节性，非制造业PMI回落但也好于预期。<br><small style="color:var(--text-secondary)">多重压力下经济仍保持韧性，政策支持力度有望继续加大。</small></span>
+                </li>
+                <li>
+                    <span class="tag">中信建投</span>
+                    <span class="content">《中国投资发展报告（2026）》预测：A股将延续"慢牛"格局，沪深300全年涨幅或超10%，上证指数最高或触及4500点。</span>
+                </li>
+                <li>
+                    <span class="tag">银河证券</span>
+                    <span class="content">1-3月工业企业利润同比增长15.5%，价和利润率回升是企业利润回升的主因。工业生产边际放缓，但整体态势良好。</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            数据来源：WebSearch | 生成时间：2026-05-01 09:00 | A股5月1日-5日休市，6日起正常开市
+        </div>
+    </div>
+</body>
+</html>
