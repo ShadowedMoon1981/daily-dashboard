@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日投资日报 | 2026-05-04</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; background: #0a0a0f; color: #e5e7eb; }
+        .card { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; }
+        .up { color: #ef4444; }
+        .down { color: #22c55e; }
+        .flat { color: #9ca3af; }
+        .header-gradient { background: linear-gradient(135deg, #1e3a5f 0%, #0f2027 100%); }
+        .accent-blue { color: #60a5fa; }
+        .accent-gold { color: #fbbf24; }
+        .accent-red { color: #f87171; }
+        .accent-green { color: #34d399; }
+        .divider { border-color: rgba(255,255,255,0.1); }
+        .tag-hs { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .tag-us { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+        .tag-commodity { background: linear-gradient(135deg, #d97706, #b45309); }
+        .tag-macro { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+        .tag-policy { background: linear-gradient(135deg, #0891b2, #0e7490); }
+        .section-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .scroll-container::-webkit-scrollbar { width: 4px; }
+        .scroll-container::-webkit-scrollbar-thumb { background: #374151; border-radius: 2px; }
+        .market-badge { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+        .time-badge { background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <div class="header-gradient p-6 mb-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-white">每日投资日报</h1>
+                            <p class="text-gray-400 text-sm">Daily Investment Report</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="text-3xl font-bold text-white">2026年5月4日</div>
+                    <div class="text-gray-400 text-sm">周一 · 五一假期（A股5/1-5休市，港股5/4复市）</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 pb-8">
+        <!-- Market Data Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <!-- A股 -->
+            <div class="card p-4">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="market-badge tag-hs text-white">A股</span>
+                    <span class="text-gray-500 text-xs">4月30日收盘</span>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">上证指数</span>
+                        <span class="font-mono font-semibold">4112.16</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">涨跌幅</span>
+                        <span class="font-mono text-sm up">+0.11%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">深证成指</span>
+                        <span class="font-mono font-semibold">15107.55</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">涨跌幅</span>
+                        <span class="font-mono text-sm down">-0.09%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">创业板指</span>
+                        <span class="font-mono font-semibold">2230+</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">4月月涨</span>
+                        <span class="font-mono text-sm up">+15.45%</span>
+                    </div>
+                    <div class="mt-2 pt-2 border-t border-white/10 text-xs text-gray-500">
+                        <div>• 4月沪指累涨 <span class="text-green-400">+5.66%</span></div>
+                        <div>• 科创50月涨 <span class="text-green-400">+25.05%</span></div>
+                        <div>• 5月6日(周三)复市</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 港股 -->
+            <div class="card p-4">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="market-badge tag-hs text-white">港股</span>
+                    <span class="text-gray-500 text-xs">5月4日复市</span>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">恒生指数</span>
+                        <span class="font-mono font-semibold">26111.84</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">4月29日涨跌</span>
+                        <span class="font-mono text-sm up">+1.68%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">恒生科技</span>
+                        <span class="font-mono font-semibold">4871.32</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">4月29日涨跌</span>
+                        <span class="font-mono text-sm down">-0.79%</span>
+                    </div>
+                    <div class="mt-2 pt-2 border-t border-white/10 text-xs text-gray-500">
+                        <div>• 恒指重返<span class="text-green-400">26000点</span>上方</div>
+                        <div>• 5月4日(周一)劳动节后复市</div>
+                        <div>• 科技/保险/内房4月底强势</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 美股 -->
+            <div class="card p-4">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="market-badge tag-us text-white">美股</span>
+                    <span class="text-gray-500 text-xs">5月1日收盘</span>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">标普500</span>
+                        <span class="font-mono font-semibold">7230.12</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">涨跌幅</span>
+                        <span class="font-mono text-sm up">+0.29%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">纳斯达克</span>
+                        <span class="font-mono font-semibold text-green-400">25114.44</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">涨跌幅</span>
+                        <span class="font-mono text-sm up">+0.89%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">道琼斯</span>
+                        <span class="font-mono font-semibold">49499.27</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">涨跌幅</span>
+                        <span class="font-mono text-sm down">-0.31%</span>
+                    </div>
+                    <div class="mt-2 pt-2 border-t border-white/10 text-xs text-gray-500">
+                        <div>• 纳指首破<span class="text-green-400">25000点</span>历史新高</div>
+                        <div>• 标普创<span class="text-green-400">历史新高</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 大宗商品 -->
+            <div class="card p-4">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="market-badge tag-commodity text-white">大宗商品</span>
+                    <span class="text-gray-500 text-xs">5月4日期货</span>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">WTI原油</span>
+                        <span class="font-mono font-semibold">$101.11</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">日内涨跌</span>
+                        <span class="font-mono text-sm down">-0.82%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">布伦特原油</span>
+                        <span class="font-mono font-semibold">$107.52</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">日内涨跌</span>
+                        <span class="font-mono text-sm down">-0.60%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">黄金(T+D)</span>
+                        <span class="font-mono font-semibold accent-gold">¥4609</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-xs">日内涨跌</span>
+                        <span class="font-mono text-sm down">-0.11%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm">伦铜现</span>
+                        <span class="font-mono font-semibold">$4425</span>
+                    </div>
+                    <div class="mt-2 pt-2 border-t border-white/10 text-xs text-gray-500">
+                        <div>• 原油重返<span class="text-red-400">$100+</span>区间</div>
+                        <div>• 黄金TD约¥4609附近震荡</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Macro Data -->
+        <div class="card p-5 mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="section-icon bg-purple-500/20">
+                    <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                </div>
+                <h2 class="text-lg font-semibold text-white">宏观数据</h2>
+                <span class="market-badge tag-macro text-white">最新</span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white/5 rounded-xl p-4">
+                    <div class="text-gray-400 text-sm mb-1">制造业PMI</div>
+                    <div class="text-2xl font-bold text-green-400 mb-1">50.3%</div>
+                    <div class="text-xs text-gray-500">4月 | 连续2个月扩张</div>
+                    <div class="text-xs text-gray-600 mt-1">较3月-0.1pp</div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-4">
+                    <div class="text-gray-400 text-sm mb-1">CPI <span class="text-gray-600">(3月)</span></div>
+                    <div class="text-2xl font-bold text-green-400 mb-1">+1.0%</div>
+                    <div class="text-xs text-gray-500">同比 | 温和回升</div>
+                    <div class="text-xs text-gray-600 mt-1">通胀压力可控</div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-4">
+                    <div class="text-gray-400 text-sm mb-1">PPI <span class="text-gray-600">(3月)</span></div>
+                    <div class="text-2xl font-bold text-green-400 mb-1">+0.5%</div>
+                    <div class="text-xs text-gray-500">同比 | 41个月来首转正</div>
+                    <div class="text-xs text-gray-600 mt-1">工业品价格回升</div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-4">
+                    <div class="text-gray-400 text-sm mb-1">非制造业PMI</div>
+                    <div class="text-2xl font-bold text-red-400 mb-1">49.6%</div>
+                    <div class="text-xs text-gray-500">4月 | 收缩区间</div>
+                    <div class="text-xs text-gray-600 mt-1">服务业再度收缩</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key News -->
+        <div class="card p-5 mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="section-icon bg-red-500/20">
+                    <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                </div>
+                <h2 class="text-lg font-semibold text-white">市场要闻</h2>
+                <span class="time-badge text-gray-400">2026-05-04</span>
+            </div>
+            <div class="space-y-3">
+                <div class="bg-white/5 rounded-xl p-4 border-l-4 border-blue-500">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-blue-400 text-sm">🇨🇳</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white mb-1">商务部发布阻断令！反制美国对5家中企涉伊朗石油制裁</h3>
+                            <p class="text-gray-400 text-sm">5月2日，商务部发布阻断禁令，阻断美国以参与涉伊朗石油交易为由，对恒力石化等5家企业的制裁。商务部为维护国家和企业利益，依法规定不得承认、执行、遵守美国对这5家企业的制裁措施。此举是中方面对美方长臂管辖的强硬反制。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-4 border-l-4 border-yellow-500">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-yellow-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-yellow-400 text-sm">🏛️</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white mb-1">巴菲特股东大会60年首次"退位"，阿贝尔首秀定调</h3>
+                            <p class="text-gray-400 text-sm">当地时间5月2日，伯克希尔股东大会举行，这是巴菲特退休后阿贝尔的首场股东大会。一季度净利润同比增长近120%，现金储备再创历史新高。阿贝尔表示对AI持保守态度，看好数据中心，强调集中投资策略。巴菲特认为目前投资环境不佳，应等待市场回调。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-4 border-l-4 border-orange-500">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-orange-400 text-sm">✈️</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white mb-1">"五一"机票价格大跳水，部分航线接近"腰斩"</h3>
+                            <p class="text-gray-400 text-sm">据去哪儿数据，5月2日起机票价格大跳水，较峰值接近"腰斩"，大城市间裸票低至300元。节前一天和返程高峰机票最贵，5月2-3日是低谷。出行消费呈现"理性回归"趋势。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-4 border-l-4 border-green-500">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-green-400 text-sm">📊</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white mb-1">A股一季报收官：航空业净利润同比暴涨453.9%扭亏为盈</h3>
+                            <p class="text-gray-400 text-sm">A股一季报法定披露期结束，整体营收、净利润同步增长，行业景气度呈现结构性分化。航空业一季报扭亏为盈，净利润同比增长453.9%。石油石化、基础化工、TMT等行业也有不同程度增长。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-4 border-l-4 border-purple-500">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-purple-400 text-sm">🥂</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white mb-1">五粮液业绩震荡仍坚持高比例分红，抛出80-100亿回购方案</h3>
+                            <p class="text-gray-400 text-sm">五粮液4月30日发布2025年年报及2026年一季报，2025年业绩震荡。公司拟现金分红100.07亿元，并抛出80-100亿元回购方案。白酒行业进入存量竞争时代，五粮液仍践行高比例分红承诺。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-4 border-l-4 border-cyan-500">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-cyan-400 text-sm">🏍️</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white mb-1">张雪机车WSBK再夺冠，A股"朋友圈"不断更新</h3>
+                            <p class="text-gray-400 text-sm">5月2日晚，2026世界超级摩托车锦标赛匈牙利站，"张雪机车"夺冠。张雪发文称"我说牛，谁不服"。其夺冠引发资本市场共振，多家上市公司公开回应业务往来。中国摩托车产业高端化出海趋势明显。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-4 border-l-4 border-red-500">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-red-400 text-sm">💰</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white mb-1">美伊谈判新动向：伊朗提出14点提议，13万人加密货币爆仓</h3>
+                            <p class="text-gray-400 text-sm">5月2日，伊朗披露最新谈判方案，包括美军撤出、解除封锁等14点提议。特朗普表示将审查方案，但认为难以接受，还称存在重启对伊空袭可能。受此影响，加密货币市场大幅波动，24小时内超13万人爆仓。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-4 border-l-4 border-gray-500">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 bg-gray-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span class="text-gray-400 text-sm">🏦</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white mb-1">私募大佬持仓曝光：一季度调仓明显，合计持仓近800亿元</h3>
+                            <p class="text-gray-400 text-sm">上市公司一季报披露完毕，47家百亿级私募持仓浮出水面，合计持股市值近800亿元。董承非、杨东、裘国根等知名私募一季度调仓，加码科技、消费等领域企业，持仓更趋均衡。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Summary -->
+        <div class="card p-5">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="section-icon bg-cyan-500/20">
+                    <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                </div>
+                <h2 class="text-lg font-semibold text-white">市场综述</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-gradient-to-br from-green-500/10 to-green-600/5 rounded-xl p-4 border border-green-500/20">
+                    <div class="text-green-400 font-semibold mb-2">多方信号 👍</div>
+                    <ul class="text-sm text-gray-400 space-y-1">
+                        <li>• 纳指突破25000点历史新高</li>
+                        <li>• 标普500连续创历史新高</li>
+                        <li>• 港股5月4日复市，恒指重返26000</li>
+                        <li>• A股4月科创50月涨25.05%</li>
+                        <li>• 航空业一季报大幅扭亏</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-red-500/10 to-red-600/5 rounded-xl p-4 border border-red-500/20">
+                    <div class="text-red-400 font-semibold mb-2">风险信号 👎</div>
+                    <ul class="text-sm text-gray-400 space-y-1">
+                        <li>• WTI原油重返$100+区间，近跌0.82%</li>
+                        <li>• 美伊谈判不确定性高</li>
+                        <li>• 非制造业PMI再度收缩</li>
+                        <li>• 恒生科技4月底小跌</li>
+                        <li>• 道指小幅下跌</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-xl p-4 border border-blue-500/20">
+                    <div class="text-blue-400 font-semibold mb-2">关注要点 📌</div>
+                    <ul class="text-sm text-gray-400 space-y-1">
+                        <li>• A股5月6日(周三)复市</li>
+                        <li>• 美伊谈判后续进展</li>
+                        <li>• 巴菲特现金储备创高意味什么</li>
+                        <li>• 港股复市后情绪</li>
+                        <li>• 黄金能否守住$4600</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-6 text-center text-gray-600 text-xs">
+            <p>数据来源：WebSearch（新浪财经、华尔街见闻、腾讯财经、国家统计局、Trading Economics等） | 生成时间：2026-05-04 08:58</p>
+            <p class="mt-1">本报告仅供参考，不构成投资建议</p>
+        </div>
+    </div>
+</body>
+</html>
