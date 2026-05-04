@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日投资日报 - 2026年5月4日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 30px; padding: 30px; background: linear-gradient(135deg, #16213e 0%, #0f3460 100%); border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .header h1 { font-size: 2.5em; color: #fff; margin-bottom: 10px; }
+        .header .date { font-size: 1.2em; color: #94a3b8; }
+        .header .note { font-size: 0.9em; color: #f59e0b; margin-top: 8px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .card { background: #16213e; border-radius: 12px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .card h2 { font-size: 1.3em; color: #fff; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #0f3460; display: flex; align-items: center; gap: 10px; }
+        .card h2 .icon { font-size: 1.2em; }
+        .market-table { width: 100%; border-collapse: collapse; }
+        .market-table th, .market-table td { padding: 12px 8px; text-align: left; border-bottom: 1px solid #1e3a5f; }
+        .market-table th { color: #94a3b8; font-weight: 500; font-size: 0.9em; }
+        .market-table td { color: #fff; }
+        .market-table .name { font-weight: 500; }
+        .market-table .value { font-weight: 600; }
+        .up { color: #ef4444; }
+        .down { color: #22c55e; }
+        .flat { color: #94a3b8; }
+        .macro-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #1e3a5f; }
+        .macro-item:last-child { border-bottom: none; }
+        .macro-label { color: #94a3b8; }
+        .macro-value { font-weight: 600; color: #fff; }
+        .news-list { list-style: none; }
+        .news-list li { padding: 14px 0; border-bottom: 1px solid #1e3a5f; line-height: 1.6; }
+        .news-list li:last-child { border-bottom: none; }
+        .news-list .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-right: 8px; font-weight: 500; }
+        .tag-us { background: #3b82f6; color: #fff; }
+        .tag-cn { background: #ef4444; color: #fff; }
+        .tag-oil { background: #f59e0b; color: #000; }
+        .tag-ai { background: #8b5cf6; color: #fff; }
+        .tag-other { background: #64748b; color: #fff; }
+        .tag-hk { background: #10b981; color: #fff; }
+        .tag-policy { background: #ec4899; color: #fff; }
+        .footer { text-align: center; margin-top: 30px; padding: 20px; color: #64748b; font-size: 0.85em; }
+        .highlight-box { background: linear-gradient(135deg, #1e3a5f 0%, #16213e 100%); border-left: 4px solid #f59e0b; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+        .highlight-box p { color: #e2e8f0; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 每日投资日报</h1>
+            <div class="date">2026年5月4日 星期一</div>
+            <div class="note">⚠️ A股5/1-5/5劳动节休市 | 港股5/4开市 | 数据为4月30日收盘/国际市场</div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2><span class="icon">🇨🇳</span> A股指数（4月收官）</h2>
+                <table class="market-table">
+                    <tr><th>指数</th><th>收盘价</th><th>涨跌幅</th></tr>
+                    <tr><td class="name">上证指数</td><td class="value">4112.16</td><td class="up">+0.11%</td></tr>
+                    <tr><td class="name">深证成指</td><td class="value">15107.55</td><td class="down">-0.09%</td></tr>
+                    <tr><td class="name">创业板指</td><td class="value">3677.15</td><td class="down">-0.27%</td></tr>
+                    <tr><td class="name">科创50</td><td class="value">1571.07</td><td class="up">+5.19%</td></tr>
+                </table>
+                <div class="highlight-box">
+                    <p>4月A股圆满收官：创业板指月涨15.45%刷新十年新高，科创50累涨25.05%</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">🇭🇰</span> 港股指数（4月收官）</h2>
+                <table class="market-table">
+                    <tr><th>指数</th><th>点位</th><th>月涨幅</th></tr>
+                    <tr><td class="name">恒生指数</td><td class="value">25776.53</td><td class="up">+3.99%</td></tr>
+                    <tr><td class="name">恒生科技</td><td class="value">4871.32</td><td class="up">+4.76%</td></tr>
+                </table>
+                <div class="highlight-box">
+                    <p>港股4月震荡上行，群核科技等新股月内翻倍；5/4港股恢复交易</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">🇺🇸</span> 美股（5月1日）</h2>
+                <table class="market-table">
+                    <tr><th>指数</th><th>收盘价</th><th>涨跌幅</th></tr>
+                    <tr><td class="name">标普500</td><td class="value">7230.12</td><td class="up">+0.29%</td></tr>
+                    <tr><td class="name">纳斯达克</td><td class="value">25114.44</td><td class="up">+0.89%</td></tr>
+                    <tr><td class="name">道琼斯</td><td class="value">49499.27</td><td class="down">-0.31%</td></tr>
+                </table>
+                <div class="highlight-box">
+                    <p>纳指首破25000点创历史新高！标普4月累涨10.42%创2000年来最大月度涨幅</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">🛢️</span> 大宗商品</h2>
+                <table class="market-table">
+                    <tr><th>品种</th><th>价格</th><th>动态</th></tr>
+                    <tr><td class="name">布伦特原油</td><td class="value">~$108/桶</td><td class="down">从110美元回落</td></tr>
+                    <tr><td class="name">黄金(国际)</td><td class="value">~$4710</td><td class="down">高位承压</td></tr>
+                    <tr><td class="name">伦铜(LME)</td><td class="value">~$12900</td><td class="flat">偏弱震荡</td></tr>
+                </table>
+                <div class="highlight-box">
+                    <p>美伊谈判传来进展信号，油价从4年高点110美元回落；黄金高位调整</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">📈</span> 宏观数据</h2>
+                <div class="macro-item">
+                    <span class="macro-label">CPI (3月)</span>
+                    <span class="macro-value">+1.0%</span>
+                </div>
+                <div class="macro-item">
+                    <span class="macro-label">PPI (3月)</span>
+                    <span class="macro-value up">+0.5%</span>
+                </div>
+                <div class="macro-item">
+                    <span class="macro-label">制造业PMI (4月)</span>
+                    <span class="macro-value up">50.3%</span>
+                </div>
+                <div class="macro-item">
+                    <span class="macro-label">非制造业PMI (4月)</span>
+                    <span class="macro-value">49.6%</span>
+                </div>
+                <div class="highlight-box">
+                    <p>制造业PMI连续扩张，非制造业再度收缩；经济修复动能有所放缓</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 20px;">
+            <h2><span class="icon">🔥</span> 市场要闻</h2>
+            <ul class="news-list">
+                <li><span class="tag tag-policy">政策</span>商务部发布阻断禁令，阻断美国以参与涉伊朗石油交易为由，对恒力石化等5家企业的制裁</li>
+                <li><span class="tag tag-us">美股</span>巴菲特股东大会召开：阿贝尔首秀定调，一季度净利润同比增长近120%，现金储备再创历史新高</li>
+                <li><span class="tag tag-cn">A股</span>A股一季报收官：航空业净利润同比增长453.9%，行业景气度结构性分化</li>
+                <li><span class="tag tag-hk">港股</span>私募大佬持仓曝光：47家百亿级私募合计持仓近800亿元，加码科技、消费</li>
+                <li><span class="tag tag-us">美股</span>纳指首破25000点创历史新高，标普500指数4月累涨10.42%创2000年来最大月度涨幅</li>
+                <li><span class="tag tag-oil">原油</span>美伊谈判新动向：伊朗披露14点提议含撤军、解除封锁条款，特朗普称难以接受</li>
+                <li><span class="tag tag-other">消费</span>五一机票价格大跳水：较峰值接近腰斩，裸票低至300元，建议错峰出行</li>
+                <li><span class="tag tag-cn">企业</span>五粮液分红100亿元并抛出80-100亿元回购方案；FF获4500万美元融资，解除退市警告</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>数据来源：新浪财经、东方财富、国家统计局、Wind | 生成时间：2026-05-04 08:58</p>
+        </div>
+    </div>
+</body>
+</html>
