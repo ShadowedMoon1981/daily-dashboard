@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投资日报 2026-05-07 | 阿财</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #0f1117; color: #e8eaf0; min-height: 100vh; }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  /* Header */
+  .header { text-align: center; padding: 28px 0 20px; border-bottom: 1px solid #1e2030; margin-bottom: 28px; }
+  .header .date { font-size: 12px; color: #6b7280; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #f0f4ff; letter-spacing: 1px; }
+  .header .subtitle { font-size: 12px; color: #4b5563; margin-top: 4px; }
+
+  /* Section titles */
+  .section { margin-bottom: 28px; }
+  .section-title { font-size: 13px; font-weight: 600; color: #6b7280; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px; padding-left: 10px; border-left: 3px solid #3b82f6; }
+
+  /* Market cards grid */
+  .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .market-card { background: #161b27; border: 1px solid #1e2230; border-radius: 10px; padding: 16px; }
+  .market-card .label { font-size: 11px; color: #6b7280; margin-bottom: 6px; }
+  .market-card .value { font-size: 20px; font-weight: 700; color: #f0f4ff; margin-bottom: 4px; }
+  .market-card .change { font-size: 13px; font-weight: 600; }
+  .up { color: #ef4444; }
+  .down { color: #22c55e; }
+
+  /* Macro data */
+  .macro-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .macro-card { background: #161b27; border: 1px solid #1e2230; border-radius: 10px; padding: 14px 18px; flex: 1; min-width: 140px; }
+  .macro-card .label { font-size: 11px; color: #6b7280; margin-bottom: 4px; }
+  .macro-card .value { font-size: 18px; font-weight: 700; color: #f0f4ff; }
+  .macro-card .sub { font-size: 11px; color: #4b5563; margin-top: 2px; }
+
+  /* News */
+  .news-item { background: #161b27; border: 1px solid #1e2230; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+  .news-item .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; margin-bottom: 6px; }
+  .tag-hot { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .tag-us { background: rgba(59,130,246,0.15); color: #3b82f6; }
+  .tag-cn { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .tag-energy { background: rgba(251,191,36,0.15); color: #fbbf24; }
+  .tag-ai { background: rgba(139,92,246,0.15); color: #a78bfa; }
+  .tag-ipo { background: rgba(236,72,153,0.15); color: #ec4899; }
+  .news-item .title { font-size: 14px; font-weight: 600; color: #e8eaf0; line-height: 1.5; margin-bottom: 4px; }
+  .news-item .desc { font-size: 12px; color: #6b7280; line-height: 1.6; }
+
+  /* Commodity mini cards */
+  .comm-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .comm-card { background: #161b27; border: 1px solid #1e2230; border-radius: 10px; padding: 14px 16px; flex: 1; min-width: 130px; }
+  .comm-card .label { font-size: 11px; color: #6b7280; margin-bottom: 4px; }
+  .comm-card .value { font-size: 16px; font-weight: 700; color: #f0f4ff; margin-bottom: 2px; }
+  .comm-card .sub { font-size: 11px; color: #6b7280; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 24px 0; color: #374151; font-size: 11px; border-top: 1px solid #1e2030; margin-top: 32px; }
+  .footer a { color: #4b5563; text-decoration: none; }
+
+  /* Section divider */
+  .divider { height: 1px; background: #1e2030; margin: 24px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date">2026年5月7日 星期四</div>
+    <h1>每日投资日报</h1>
+    <div class="subtitle">阿财 · 数据驱动 · 仅供参考</div>
+  </div>
+
+  <!-- A股 + 港股 -->
+  <div class="section">
+    <div class="section-title">A 股 · 港股</div>
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="label">上证指数</div>
+        <div class="value">4,160.17</div>
+        <div class="change up">▲ 1.17%</div>
+      </div>
+      <div class="market-card">
+        <div class="label">深证成指</div>
+        <div class="value">15,459.62</div>
+        <div class="change up">▲ 2.33%</div>
+      </div>
+      <div class="market-card">
+        <div class="label">创业板指</div>
+        <div class="value">3,778.16</div>
+        <div class="change up">▲ 2.75%</div>
+      </div>
+      <div class="market-card">
+        <div class="label">科创50</div>
+        <div class="value">1,656.95</div>
+        <div class="change up">▲ 5.47%</div>
+      </div>
+      <div class="market-card">
+        <div class="label">恒生指数</div>
+        <div class="value">26,213.78</div>
+        <div class="change up">▲ 1.22%</div>
+      </div>
+      <div class="market-card">
+        <div class="label">恒生科技</div>
+        <div class="value">4,969</div>
+        <div class="change up">▲ 0.82%</div>
+      </div>
+    </div>
+    <div style="margin-top:10px; font-size:11px; color:#4b5563;">📊 沪深两市成交额 32,268亿元（较前一日放量4,874亿元）| 五一后首日开门红，创业板创近11年新高</div>
+  </div>
+
+  <!-- 美股 -->
+  <div class="section">
+    <div class="section-title">美 股</div>
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="label">道琼斯</div>
+        <div class="value">49,298.25</div>
+        <div class="change up">▲ 0.73%</div>
+      </div>
+      <div class="market-card">
+        <div class="label">标普500</div>
+        <div class="value">7,259.25</div>
+        <div class="change up">▲ 0.81%</div>
+      </div>
+      <div class="market-card">
+        <div class="label">纳斯达克</div>
+        <div class="value">25,326.13</div>
+        <div class="change up">▲ 1.03%</div>
+      </div>
+    </div>
+    <div style="margin-top:10px; font-size:11px; color:#4b5563;">纳指再创历史新高（盘中最高25,361.05点），受美伊停火预期及科技股财报提振</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 大宗商品 -->
+  <div class="section">
+    <div class="section-title">大宗商品</div>
+    <div class="comm-row">
+      <div class="comm-card">
+        <div class="label">WTI原油</div>
+        <div class="value" style="color:#22c55e;">$94.34</div>
+        <div class="sub" style="color:#22c55e;">▼ 8.68%</div>
+      </div>
+      <div class="comm-card">
+        <div class="label">布伦特原油</div>
+        <div class="value" style="color:#22c55e;">$109.82</div>
+        <div class="sub" style="color:#22c55e;">▼ 4.00%</div>
+      </div>
+      <div class="comm-card">
+        <div class="label">COMEX黄金</div>
+        <div class="value" style="color:#ef4444;">$4,569</div>
+        <div class="sub" style="color:#ef4444;">▲ 0.71%</div>
+      </div>
+      <div class="comm-card">
+        <div class="label">现货黄金</div>
+        <div class="value" style="color:#ef4444;">$4,590</div>
+        <div class="sub" style="color:#ef4444;">▲ 0.73%</div>
+      </div>
+      <div class="comm-card">
+        <div class="label">AU9999（国内）</div>
+        <div class="value" style="color:#ef4444;">¥1,013.60/g</div>
+        <div class="sub" style="color:#ef4444;">▲ 0.37%</div>
+      </div>
+      <div class="comm-card">
+        <div class="label">LME铜</div>
+        <div class="value">$13,111</div>
+        <div class="sub">开盘（数据不完整）</div>
+      </div>
+    </div>
+    <div style="margin-top:10px; font-size:11px; color:#4b5563;">
+      ⚠️ WTI原油暴跌8.68%至$94.34——美伊谈判预期+亚洲炼厂减产三重共振 | 黄金重返$4,590上方
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 宏观数据 -->
+  <div class="section">
+    <div class="section-title">宏观数据</div>
+    <div class="macro-row">
+      <div class="macro-card">
+        <div class="label">制造业 PMI</div>
+        <div class="value">50.3%</div>
+        <div class="sub">2026年4月 | 微降0.1pp，连续扩张</div>
+      </div>
+      <div class="macro-card">
+        <div class="label">非制造业 PMI</div>
+        <div class="value">49.4%</div>
+        <div class="sub">2026年4月 | 降至临界线下</div>
+      </div>
+      <div class="macro-card">
+        <div class="label">综合 PMI</div>
+        <div class="value">50.1%</div>
+        <div class="sub">2026年4月 | 仍高于临界点</div>
+      </div>
+    </div>
+    <div class="macro-row" style="margin-top:12px;">
+      <div class="macro-card" style="background:#1a1e2e; border-color:#252a3a;">
+        <div class="label">CPI 数据</div>
+        <div class="value" style="font-size:15px;">5月11日公布</div>
+        <div class="sub">机构预期：同比持平或小幅回落 | 3月: +1.0%</div>
+      </div>
+      <div class="macro-card" style="background:#1a1e2e; border-color:#252a3a;">
+        <div class="label">PPI 数据</div>
+        <div class="value" style="font-size:15px;">5月11日公布</div>
+        <div class="sub">机构预期：继续回升 | 3月: +0.5%（41月来首转正）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 要闻 -->
+  <div class="section">
+    <div class="section-title">今日要闻</div>
+
+    <div class="news-item">
+      <span class="tag tag-hot">🔥 头条</span>
+      <div class="title">美伊霍尔木兹博弈：封锁持续，特朗普"暂停自由计划"观察谈判</div>
+      <div class="desc">伊朗成立专门机构管理海峡通航，要求所有船只取得许可并遵循唯一安全航线。特朗普称若封锁持续，将暂时中止"自由计划"观察谈判前景。伊朗联合司令部警告阿联酋：任何针对伊朗领土的行动将遭"毁灭性反击"。</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-ai">🤖 AI</span>
+      <div class="title">OpenAI宣布500亿美元算力投资，Anthropic承诺2000亿美元谷歌云投资</div>
+      <div class="desc">OpenAI宣布2026年投入500亿美元建设算力基础设施，ChatGPT默认模型升级为GPT-5.5 Instant；Anthropic CEO表示美国其他AI实验室与其存在1-3个月的技术差距。AMD Q1营收102.5亿美元超预期，Q2指引109-115亿美元，将向Meta出货芯片。</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-us">🇺🇸 美股</span>
+      <div class="title">纳指再创历史新高，英特尔大涨12.94%</div>
+      <div class="desc">道指涨0.73%至49,298.25点，标普500涨0.81%至7,259.25点，纳指涨1.03%至25,326.13点（盘中最高25,361.05点）。英特尔单日大涨12.94%，年内累计涨幅近200%，总市值超5500亿美元。</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-cn">🇨🇳 A股</span>
+      <div class="title">A股五一后开门红：成交额3.2万亿，科创50涨5.47%，创业板创11年新高</div>
+      <div class="desc">上证涨1.17%至4160.17点，深证涨2.33%至15459.62点，创业板涨2.75%至3778.16点（创近11年新高），科创50涨5.47%至1656.95点。成交额32268亿元放量4874亿元，半导体、算力硬件、AI应用板块领涨。</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-energy">🛢️ 能源</span>
+      <div class="title">WTI原油暴跌8.68%失守$100，布伦特跌破$103</div>
+      <div class="desc">WTI原油跌破100美元/桶重要心理关口至$94.34（-8.68%），布伦特跌至$109.82（-4%）。三重因素共振：美伊谈判预期升温和亚洲炼厂减产打击需求前景，同时API库存超预期下降814.1万桶未能阻止跌势。</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-us">🇺🇸 政策</span>
+      <div class="title">特朗普施压食药局批准调味电子烟，欧盟敦促美遵守15%关税上限</div>
+      <div class="desc">特朗普向食药局局长施压要求批准调味电子烟上市；美国SEC提案允许企业以10-S表格替代10-Q季度报告；爱尔兰对Meta展开调查；欧盟敦促美国遵守2025年协议中15%的关税上限。</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-cn">🇨🇳 A股</span>
+      <div class="title">东方证券重组：拟发行股份购买上海证券100%股权</div>
+      <div class="desc">东方证券5月6日晚公告拟发行股份及支付现金购买上海证券100%股权，交易价格待定，公司股票5月7日复牌。威龙股份因控股股东筹划股份协议转让停牌；金利华电筹划发行股份购买中科西光航天科技股权。</div>
+    </div>
+
+    <div class="news-item">
+      <span class="tag tag-cn">🇨🇳 国内</span>
+      <div class="title">湖南全省烟花爆竹企业停产整顿，人民日报头版聚焦绿色能源与物流数据</div>
+      <div class="desc">湖南省宣布即日起全省烟花爆竹企业全面停产整顿。一季度社会物流总额96.4万亿元，同比增长6.2%。"五一"假期跨区域人员流动量预计超15亿人次，广交会叠加五一推动广州消费增长15.7%。</div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    数据来源：WebSearch（新浪财经/华尔街见闻/腾讯财经/国家统计局）&nbsp;|&nbsp;
+    生成时间：2026-05-07 06:00 (GMT+8)&nbsp;|&nbsp;
+    <a href="https://shadowedmoon1981.github.io/daily-dashboard/">GitHub Pages</a>
+  </div>
+
+</div>
+</body>
+</html>
