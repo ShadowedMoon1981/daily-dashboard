@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日投资日报 2026-05-06</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; background: #1a1a2e; color: #e0e0e0; min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; padding: 30px 0; border-bottom: 1px solid #333; margin-bottom: 30px; }
+        .header h1 { font-size: 2.2em; color: #ff6b6b; margin-bottom: 10px; }
+        .header .date { color: #888; font-size: 1.1em; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .card { background: #16213e; border-radius: 12px; padding: 20px; border: 1px solid #333; }
+        .card h2 { color: #4ecdc4; font-size: 1.2em; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #333; }
+        .card h2 .icon { margin-right: 8px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid #333; }
+        th { color: #888; font-weight: 500; font-size: 0.9em; }
+        .up { color: #ff4757; }
+        .down { color: #2ed573; }
+        .neutral { color: #ffa502; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-red { background: rgba(255, 71, 87, 0.2); color: #ff6b7a; }
+        .tag-green { background: rgba(46, 213, 115, 0.2); color: #2ed573; }
+        .tag-blue { background: rgba(78, 205, 196, 0.2); color: #4ecdc4; }
+        .tag-yellow { background: rgba(255, 165, 2, 0.2); color: #ffa502; }
+        .news-item { padding: 12px 0; border-bottom: 1px solid #333; }
+        .news-item:last-child { border-bottom: none; }
+        .news-title { font-size: 0.95em; margin-bottom: 6px; line-height: 1.5; }
+        .news-meta { font-size: 0.8em; color: #666; }
+        .macro-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #333; }
+        .macro-item:last-child { border-bottom: none; }
+        .macro-name { color: #aaa; }
+        .macro-value { font-weight: bold; }
+        .full-width { grid-column: 1 / -1; }
+        .summary-box { background: linear-gradient(135deg, #1e3a5f 0%, #16213e 100%); border-radius: 12px; padding: 25px; margin-top: 20px; }
+        .summary-box h3 { color: #4ecdc4; margin-bottom: 15px; font-size: 1.1em; }
+        .summary-box ul { list-style: none; padding-left: 0; }
+        .summary-box li { padding: 6px 0; padding-left: 20px; position: relative; }
+        .summary-box li::before { content: "•"; position: absolute; left: 0; color: #4ecdc4; }
+        .footer { text-align: center; margin-top: 40px; padding: 20px; color: #666; font-size: 0.85em; }
+        .highlight { background: rgba(255, 107, 107, 0.1); border-left: 3px solid #ff6b6b; padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+        .highlight-green { background: rgba(46, 213, 115, 0.1); border-left: 3px solid #2ed573; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 每日投资日报</h1>
+            <div class="date">2026年5月6日 星期三 · A股劳动节后复市</div>
+        </div>
+
+        <div class="grid">
+            <!-- A股市场 -->
+            <div class="card">
+                <h2><span class="icon">🇨🇳</span>A股市场（4月30日收盘）</h2>
+                <table>
+                    <tr><th>指数</th><th>收盘</th><th>涨跌幅</th></tr>
+                    <tr><td>上证指数</td><td>4,112.16</td><td class="up">+0.11%</td></tr>
+                    <tr><td>深证成指</td><td>15,107.55</td><td class="down">-0.09%</td></tr>
+                    <tr><td>创业板指</td><td>3,677.15</td><td class="down">-0.27%</td></tr>
+                    <tr><td>科创50</td><td>—</td><td class="neutral">4月累涨25%</td></tr>
+                </table>
+                <div class="highlight">
+                    <strong>📌 5月1日-5日劳动节休市，5月6日复市</strong>
+                </div>
+            </div>
+
+            <!-- 港股市场 -->
+            <div class="card">
+                <h2><span class="icon">🇭🇰</span>港股市场（5月5日）</h2>
+                <table>
+                    <tr><th>指数</th><th>收盘</th><th>涨跌幅</th></tr>
+                    <tr><td>恒生指数</td><td>25,898.61</td><td class="down">-0.76%</td></tr>
+                    <tr><td>恒生科技</td><td>4,929.68</td><td class="down">-0.94%</td></tr>
+                    <tr><td>国企指数</td><td>8,730.49</td><td class="down">-0.50%</td></tr>
+                </table>
+                <div style="margin-top:12px;">
+                    <span class="tag tag-red">半导体强势</span>
+                    <span class="tag tag-blue">科网普涨</span>
+                </div>
+            </div>
+
+            <!-- 美股市场 -->
+            <div class="card">
+                <h2><span class="icon">🇺🇸</span>美股市场（5月4日）</h2>
+                <table>
+                    <tr><th>指数</th><th>收盘</th><th>涨跌幅</th></tr>
+                    <tr><td>道琼斯</td><td>48,941.90</td><td class="down">-1.13%</td></tr>
+                    <tr><td>标普500</td><td>7,200.75</td><td class="down">-0.41%</td></tr>
+                    <tr><td>纳斯达克</td><td>25,067.80</td><td class="down">-0.19%</td></tr>
+                </table>
+                <div class="highlight">
+                    中东局势施压，纳指与标普仍处历史高位附近
+                </div>
+            </div>
+
+            <!-- 大宗商品 -->
+            <div class="card">
+                <h2><span class="icon">🛢️</span>大宗商品</h2>
+                <table>
+                    <tr><th>品种</th><th>价格</th><th>状态</th></tr>
+                    <tr><td>WTI原油</td><td>$106.42/桶</td><td class="up">+4.39%</td></tr>
+                    <tr><td>布伦特原油</td><td>$114.44/桶</td><td class="up">+5.80%</td></tr>
+                    <tr><td>COMEX黄金</td><td>$4,520/盎司</td><td class="down">-2.39%</td></tr>
+                    <tr><td>COMEX白银</td><td>$73.52/盎司</td><td class="down">-3.81%</td></tr>
+                    <tr><td>LME铜</td><td>~$12,996/吨</td><td class="neutral">—</td></tr>
+                </table>
+                <div class="highlight highlight-green">
+                    原油暴涨：美伊霍尔木兹对峙，阿联酋石油设施遭袭
+                </div>
+            </div>
+
+            <!-- 宏观数据 -->
+            <div class="card">
+                <h2><span class="icon">📈</span>宏观数据（最新）</h2>
+                <div class="macro-item">
+                    <span class="macro-name">制造业PMI（4月）</span>
+                    <span class="macro-value up">50.3%</span>
+                </div>
+                <div class="macro-item">
+                    <span class="macro-name">非制造业PMI（4月）</span>
+                    <span class="macro-value neutral">49.6%</span>
+                </div>
+                <div class="macro-item">
+                    <span class="macro-name">CPI（3月）</span>
+                    <span class="macro-value up">+1.0%</span>
+                </div>
+                <div class="macro-item">
+                    <span class="macro-name">PPI（3月）</span>
+                    <span class="macro-value up">+0.5%</span>
+                </div>
+                <div class="highlight">
+                    PPI 41个月来首次转正，制造业连续扩张
+                </div>
+            </div>
+
+            <!-- 市场要闻 -->
+            <div class="card full-width">
+                <h2><span class="icon">🔥</span>市场要闻（5月5日-6日）</h2>
+                <div class="news-item">
+                    <div class="news-title"><span class="tag tag-red">地缘政治</span> <strong>美伊霍尔木兹对峙骤然升级</strong></div>
+                    <div class="news-meta">美军在霍尔木兹海峡击沉数艘伊朗船只，伊朗总统办公室否认辞职传闻。特朗普威胁"将伊朗从地球表面抹去"。美伊脆弱停火协议面临破裂风险。</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title"><span class="tag tag-blue">原油</span> <strong>原油暴涨近6%，布伦特重回$114</strong></div>
+                    <div class="news-meta">霍尔木兹海峡局势升温，阿联酋石油工业区遭袭，市场对石油供应链中断担忧加剧。WTI单日涨4.39%，布伦特涨5.80%。</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title"><span class="tag tag-yellow">贵金属</span> <strong>黄金失守$4530，白银跌超3%</strong></div>
+                    <div class="news-meta">原油飙升加剧通胀忧虑，美元与美债收益率上行施压金银。COMEX黄金跌2.39%至$4,520，国内金饰价格跌破1400元/克。</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title"><span class="tag tag-green">A股</span> <strong>央行3000亿逆回购驰援流动性</strong></div>
+                    <div class="news-meta">5月6日央行开展3000亿元买断式逆回购，期限3个月。机构预期节后A股上涨概率60%，建议逢低配置科技成长。</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title"><span class="tag tag-blue">港股</span> <strong>港股低开低走，半导体板块强势</strong></div>
+                    <div class="news-meta">恒生指数跌0.76%，恒生科技跌0.94%。半导体板块延续强势，机械、电气设备、软件板块上涨。</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title"><span class="tag tag-yellow">美股</span> <strong>美股集体收跌，道指暴跌550点</strong></div>
+                    <div class="news-meta">中东局势拖累消费信心，道指跌1.13%创近两月最大跌幅。纳指与标普仍处历史高位附近。</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title"><span class="tag tag-red">科技</span> <strong>苹果财报超预期，AI算力需求强劲</strong></div>
+                    <div class="news-meta">苹果Q2营收同比大涨，AI手机和MacBook需求强劲。谷歌资本支出上限提至1900亿美元，AI算力军备竞赛持续。</div>
+                </div>
+            </div>
+
+            <!-- 投资摘要 -->
+            <div class="card full-width">
+                <h2><span class="icon">💡</span>投资摘要</h2>
+                <div class="summary-box">
+                    <h3>核心观点</h3>
+                    <ul>
+                        <li><strong>地缘风险主导市场</strong>：美伊霍尔木兹对峙骤然升级，原油暴涨5-6%，避险情绪升温</li>
+                        <li><strong>A股节后复市</strong>：央行3000亿逆回购释放流动性，历史上涨概率60%，科技成长仍是主线</li>
+                        <li><strong>港股承压</strong>：中东局势拖累港股，但半导体板块逆势走强</li>
+                        <li><strong>美股高位回调</strong>：道指跌超1%，纳指微跌，中东局势和通胀担忧施压</li>
+                        <li><strong>黄金白银调整</strong>：原油飙升挤压流动性，实际利率上行施压贵金属</li>
+                        <li><strong>关注要点</strong>：霍尔木兹局势进展、原油价格走势、A股节后开门红概率</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📊 数据来源：Wind、新浪财经、华尔街见闻、国家统计局 | 生成时间：2026-05-06 06:00</p>
+            <p>⚠️ 本报告仅供参考，不构成投资建议</p>
+        </div>
+    </div>
+</body>
+</html>
